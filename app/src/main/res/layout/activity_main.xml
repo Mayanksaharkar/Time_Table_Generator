@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_create_new_activity">
+
+    <EditText
+        android:id="@+id/class_name_edittext"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/edit_text_border"
+        android:hint="Class Name"
+        android:paddingLeft="15dp"
+        android:textColorHint="@color/blue"
+        android:textColor="@color/blue"/>
+
+    <Button
+        android:id="@+id/next_button_to_activity2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/class_name_edittext"
+        android:layout_centerHorizontal="true"
+        android:text="Next"
+        />
+
+</RelativeLayout>
