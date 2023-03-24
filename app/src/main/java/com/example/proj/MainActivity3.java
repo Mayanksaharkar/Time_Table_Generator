@@ -57,29 +57,30 @@ public class MainActivity3 extends AppCompatActivity {
 // Loop through the rows and columns and add TexdtView objects to the GridLayout
 
                 for (RowValues rowValues : rowValuesList ) {
-                    String editTextValue = rowValues.getEditTextValue();
-                    String spinnerValue = rowValues.getSpinnerValue();
-                    // Display the values in a TextView or another UI component
+                    for (int i = 0 ; i< numRows ;i++) {
+                        String editTextValue = rowValues.getEditTextValue();
+                        String spinnerValue = rowValues.getSpinnerValue();
+                        // Display the values in a TextView or another UI component
 
 
+                        TextView textView1 = new TextView(MainActivity3.this);
+                        textView1.setText(editTextValue);
+                        TextView textView2 = new TextView(MainActivity3.this);
+                        textView2.setText(spinnerValue);
 
-                    TextView textView1 = new TextView(MainActivity3.this);
-                    textView1.setText(editTextValue);
-                    TextView textView2 = new TextView(MainActivity3.this);
-                    textView2.setText(spinnerValue);
+                        GridLayout.LayoutParams params1 = new GridLayout.LayoutParams();
+                        params1.columnSpec = GridLayout.spec(0); // Column 0
+                        params1.rowSpec = GridLayout.spec(0); // Row 0
+                        textView1.setLayoutParams(params1);
 
-                    GridLayout.LayoutParams params1 = new GridLayout.LayoutParams();
-                    params1.columnSpec = GridLayout.spec(0); // Column 0
-                    params1.rowSpec = GridLayout.spec(0); // Row 0
-                    textView1.setLayoutParams(params1);
+                        GridLayout.LayoutParams params2 = new GridLayout.LayoutParams();
+                        params2.columnSpec = GridLayout.spec(1); // Column 1
+                        params2.rowSpec = GridLayout.spec(0); // Row 0
+                        textView2.setLayoutParams(params2);
 
-                    GridLayout.LayoutParams params2 = new GridLayout.LayoutParams();
-                    params2.columnSpec = GridLayout.spec(1); // Column 1
-                    params2.rowSpec = GridLayout.spec(0); // Row 0
-                    textView2.setLayoutParams(params2);
-
-                    gridLayout.addView(textView1);
-                    gridLayout.addView(textView2);
+                        gridLayout.addView(textView1);
+                        gridLayout.addView(textView2);
+                    }
 
 
                     /* for (int row = 0; row < numRows; row++) {
