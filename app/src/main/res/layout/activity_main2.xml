@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_create_new_activity"
+    android:background="@drawable/bg"
     tools:context=".MainActivity2">
 
 
@@ -34,7 +34,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="28dp"
         android:text="No. of lecture in a day"
-        android:textColor="#0077C2"
+        android:textColor="@color/pink"
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -68,7 +68,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="28dp"
         android:text="Working days in a week"
-        android:textColor="#0077C2"
+        android:textColor="@color/pink"
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -77,6 +77,7 @@
         app:layout_constraintVertical_bias="0.322" />
 
     <EditText
+        android:inputType="number"
         android:id="@+id/no_of_sub"
         android:layout_width="70dp"
         android:layout_height="50dp"
@@ -101,9 +102,8 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="28dp"
         android:text="Number of Subjects"
-        android:background="@drawable/button_next
-"
-        android:textColor="#0077C2"
+
+        android:textColor="@color/pink"
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -113,18 +113,18 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/blue"
-        android:textSize="14sp"
+        android:layout_width="113dp"
+        android:layout_height="56dp"
+        android:background="@drawable/button_next"
         android:text="next"
         android:textColor="@color/white"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.78"
+        app:layout_constraintHorizontal_bias="0.916"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.683" />
+        app:layout_constraintVertical_bias="0.68" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

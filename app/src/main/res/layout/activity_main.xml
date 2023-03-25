@@ -2,26 +2,52 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_create_new_activity">
+    android:background="@drawable/bg">
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+android:textStyle="italic"
+
+        android:layout_marginTop="16dp"
+        android:text="Enter Class Name"
+        android:textColor="@color/white"
+        android:textSize="30dp" />
 
     <EditText
         android:id="@+id/class_name_edittext"
         android:layout_width="250dp"
         android:layout_height="50dp"
-        android:layout_centerInParent="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="259dp"
         android:background="@drawable/edit_text_border"
         android:hint="Class Name"
         android:paddingLeft="15dp"
-        android:textColor="@color/blue"
-        android:textColorHint="@color/blue" />
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/next_button_to_activity2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="123dp"
+        android:layout_height="48dp"
         android:layout_below="@id/class_name_edittext"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentStart="true"
+
+        android:layout_alignParentEnd="true"
+
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="212dp"
+        android:layout_marginTop="29dp"
+        android:layout_marginEnd="80dp"
+        android:layout_marginBottom="345dp"
+        android:background="@drawable/button_next"
+        android:elevation="15dp"
         android:text="Next"
-        />
+        android:textColor="@color/white"
+        android:translationX="4dp" />
 
 </RelativeLayout>

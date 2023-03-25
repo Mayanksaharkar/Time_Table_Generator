@@ -1,75 +1,115 @@
 <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@color/blue"
-    android:paddingTop="100dp">
+    android:background="@drawable/bg"
+    android:theme="@style/Theme.Material3.Dark.NoActionBar"
+    >
 
-    <Button
-        android:id="@+id/btn_add_row"
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add Row"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="10dp"
+        android:text="Prepare Subject List"
         android:textColor="@color/white"
-       />
+        android:textSize="30sp"
+        android:layout_marginStart="15dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_add_row"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_next"
+            android:elevation="150dp"
+            android:text="Add Row"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:id="@+id/layout_row_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:showDividers="middle"
+        android:divider="@drawable/empty_tall_divider"
+        >
 
         <!-- Placeholder for dynamically added rows -->
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btn_submit"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Submit"
-        android:textColor="@color/white"
-       />
+        android:padding="10dp">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_submit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Submit"
+            android:background="@drawable/button_next"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
     <TableLayout
         android:id="@+id/tableLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-
+        android:background="@drawable/gradient_text"
         >
         <TableRow>
-            <TextView android:layout_height="wrap_content"
+            <TextView android:layout_height="40dp"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:text="Subject Name"
-                android:textSize="20sp"
+                android:textSize="25sp"
+                android:textAlignment="center"
                 android:textStyle="bold"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                />
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_weight="1"
-                android:textSize="20sp"
+                android:textSize="25sp"
+                android:textAlignment="center"
                 android:textStyle="bold"
                 android:textColor="@color/white"
                 android:text="Number of Slots"/>
 
         </TableRow>
     </TableLayout>
+
     <TableLayout
         android:id="@+id/gridlay"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
-        >
-    </TableLayout>
+        android:layout_height="wrap_content"
+        android:background="@drawable/gradient_text"></TableLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="5dp">
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
+            android:background="@drawable/button_next"
             android:id="@+id/clear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -81,12 +121,14 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:padding="5dp">
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/generate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="187dp"
+            android:layout_height="50dp"
+            android:background="@drawable/button_next"
             android:text="Generate Time Table"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"

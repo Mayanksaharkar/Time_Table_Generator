@@ -2,13 +2,11 @@
     android:shape="rectangle">
 
     <!-- Set the border color and width -->
-    <stroke
-        android:width="3dp"
-        android:color="#0077C2" />
 
     <!-- Set the corner radius of the EditText -->
     <corners
-        android:radius="8dp" />
+        android:radius="10dp" /> <gradient android:startColor="#9E9584FF" android:endColor="#8EFC408C"/>
+    <stroke android:width="3dp" android:color="#D9FC6EA7"/>
 
     <!-- Set the background color of the EditText -->
 

@@ -214,8 +214,13 @@ public class MainActivity3 extends AppCompatActivity {
 
         // Create a new EditText
         EditText editText = new EditText(this);
-        editText.setBackground(ContextCompat.getDrawable(MainActivity3.this, R.drawable.border));
+        editText.setBackground(ContextCompat.getDrawable(MainActivity3.this, R.drawable.edit_text_border));
         editText.setHint("Subject Name");
+        TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT , ViewGroup.LayoutParams.MATCH_PARENT);
+        editText.setLayoutParams(new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.MATCH_PARENT
+        ));
         editText.setHintTextColor(ContextCompat.getColor(MainActivity3.this, R.color.white));
         editText.setTextColor(ContextCompat.getColor(MainActivity3.this, R.color.white));
 
@@ -228,7 +233,7 @@ public class MainActivity3 extends AppCompatActivity {
 
         // Create a new Spinner
         Spinner spinner = new Spinner(this);
-        spinner.setBackground(ContextCompat.getDrawable(MainActivity3.this, R.drawable.border));
+        spinner.setBackground(ContextCompat.getDrawable(MainActivity3.this, R.drawable.edit_text_border));
        /* spinner.setMinimumHeight(50);*/
 
         ViewGroup.LayoutParams params = spinner.getLayoutParams();
@@ -257,6 +262,7 @@ public class MainActivity3 extends AppCompatActivity {
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
         ));
+        btnRemoveRow.setBackground(ContextCompat.getDrawable(MainActivity3.this, R.drawable.edit_text_border));
         btnRemoveRow.setText("Remove Row");
         btnRemoveRow.setOnClickListener(new View.OnClickListener() {
             @Override
