@@ -1,19 +1,28 @@
 package com.example.proj;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import org.w3c.dom.Text;
 
@@ -22,11 +31,14 @@ import java.util.ArrayList;
 
 public class MainActivity3 extends AppCompatActivity {
 
-    GridLayout gridLayout;
+    TableLayout tableLayout;
+    LinearLayout layoutRow;
     private LinearLayout layoutRowContainer;
     private Button btnAddRow;
-    private Button btnSubmit;
-    private ArrayList<RowValues> rowValuesList = new ArrayList<>();
+    private Button btnSubmit , clear ,generate;
+
+    public static ArrayList<RowValues> rowValuesList = new ArrayList<>();
+    AlertDialog alert ;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -34,9 +46,33 @@ public class MainActivity3 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3);
 
+        generate = findViewById(R.id.generate);
+        generate.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent_to_Activity4 =  new Intent(MainActivity3.this,MainActivity4.class);
+                        startActivity(intent_to_Activity4);
+                    }
+                }
+        );
+
         layoutRowContainer = findViewById(R.id.layout_row_container);
         btnAddRow = findViewById(R.id.btn_add_row);
         btnSubmit = findViewById(R.id.btn_submit);
+        clear = findViewById(R.id.clear);
+
+        clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tableLayout.removeAllViews();
+                rowValuesList.clear();
+
+            }
+
+
+        });
+
 
         btnAddRow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,25 +81,65 @@ public class MainActivity3 extends AppCompatActivity {
             }
         });
 
-        btnSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                storeValues();
+        btnSubmit.setOnClickListener(new View.OnClickListener() {public void onClick(View v) {
 
-                    gridLayout = findViewById(R.id.gridlay);
-                    int numRows = rowValuesList.size();
-                    int numCols = 2;
+                new AlertDialog.Builder(MainActivity3.this)
+                        .setTitle("Confirm Submission")
+                        .setMessage("Are you sure you want to submit?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Submit data
+
+                                storeValues();
+
+                                tableLayout = findViewById(R.id.gridlay);
+                                int numRows = rowValuesList.size();
+                                int numCols = 2;
 
 // Loop through the rows and columns and add TexdtView objects to the GridLayout
 
-                for (RowValues rowValues : rowValuesList ) {
-                    for (int i = 0 ; i< numRows ;i++) {
-                        String editTextValue = rowValues.getEditTextValue();
-                        String spinnerValue = rowValues.getSpinnerValue();
-                        // Display the values in a TextView or another UI component
+                                for (RowValues rowValues : rowValuesList ) {
+
+                                        String editTextValue = rowValues.getEditTextValue();
+                                        String spinnerValue = rowValues.getSpinnerValue();
+
+                                        TextView editTextTextView = new TextView(MainActivity3.this);
+                                        editTextTextView.setText(editTextValue);
+
+                                        TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, // Width
+                                                TableLayout.LayoutParams.WRAP_CONTENT,
+                                                1 );
+                                        editTextTextView.setLayoutParams(layoutParams);
+                                        TableRow.LayoutParams layoutParams2 = new TableRow.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT,TableLayout.LayoutParams.WRAP_CONTENT,1);
+                                        editTextTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
+                                        TextView spinnerTextView = new TextView(MainActivity3.this);
+                                        spinnerTextView.setLayoutParams(layoutParams2);
+                                        spinnerTextView.setText(spinnerValue);
 
 
-                        TextView textView1 = new TextView(MainActivity3.this);
+
+                                        // Create new TableRow views
+                                        TableRow tableRow = new TableRow(MainActivity3.this);
+                                        spinnerTextView.setText(spinnerValue);
+                                        tableRow.addView(editTextTextView);
+                                        tableRow.addView(spinnerTextView);
+
+                                        // Add new TableRow to TableLayout
+                                        tableLayout.addView(tableRow);
+
+
+
+
+
+
+                                        // Display the values in a TextView or another UI component
+
+
+
+
+                       /* TextView textView1 = new TextView(MainActivity3.this);
                         textView1.setText(editTextValue);
                         TextView textView2 = new TextView(MainActivity3.this);
                         textView2.setText(spinnerValue);
@@ -78,9 +154,10 @@ public class MainActivity3 extends AppCompatActivity {
                         params2.rowSpec = GridLayout.spec(0); // Row 0
                         textView2.setLayoutParams(params2);
 
-                        gridLayout.addView(textView1);
-                        gridLayout.addView(textView2);
-                    }
+                        gridLayout.addView(textView1 ,0);
+                        gridLayout.addView(textView2,1);*/
+
+                                    }
 
 
                     /* for (int row = 0; row < numRows; row++) {
@@ -101,17 +178,34 @@ public class MainActivity3 extends AppCompatActivity {
 
                     // Display the values in a TextView or another UI component
                 }*/
-            }
-            }
 
+
+                                submitData();
+
+                            }
+                        })
+                        .setNegativeButton("No", null)
+                        .show();
+            }
         });
+
+
+        removeRow(layoutRow);
+
+
+
+    }
+    private void submitData() {
+        // Submit data to databasre or server
+        Toast.makeText(this, "Data submitted successfully!", Toast.LENGTH_SHORT).show();
+
     }
 
 
 
     private void addRow() {
         // Create a new row layout
-        LinearLayout layoutRow = new LinearLayout(this);
+         layoutRow = new LinearLayout(this);
         layoutRow.setOrientation(LinearLayout.HORIZONTAL);
         layoutRow.setLayoutParams(new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
@@ -120,6 +214,11 @@ public class MainActivity3 extends AppCompatActivity {
 
         // Create a new EditText
         EditText editText = new EditText(this);
+        editText.setBackground(ContextCompat.getDrawable(MainActivity3.this, R.drawable.border));
+        editText.setHint("Subject Name");
+        editText.setHintTextColor(ContextCompat.getColor(MainActivity3.this, R.color.white));
+        editText.setTextColor(ContextCompat.getColor(MainActivity3.this, R.color.white));
+
         editText.setLayoutParams(new LinearLayout.LayoutParams(
                 0,
                 LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -129,13 +228,22 @@ public class MainActivity3 extends AppCompatActivity {
 
         // Create a new Spinner
         Spinner spinner = new Spinner(this);
+        spinner.setBackground(ContextCompat.getDrawable(MainActivity3.this, R.drawable.border));
+       /* spinner.setMinimumHeight(50);*/
+
+        ViewGroup.LayoutParams params = spinner.getLayoutParams();
+       /* params.height = .LayoutParams.MATCH_PARENT;
+        spinner.setLayoutParams(params);
+        *//*spinner.colo(ContextCompat.getColor(MainActivity3.this, R.color.blue));
+        spinner.setTextColor(ContextCompat.getColor(MainActivity3.this, R.color.blue));
+*/
         spinner.setLayoutParams(new LinearLayout.LayoutParams(
                 0,
-                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.MATCH_PARENT,
                 1f
         ));
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-                this,
+                MainActivity3.this,
                 R.array.spinner_values,
                 android.R.layout.simple_spinner_item
         );
@@ -164,6 +272,7 @@ public class MainActivity3 extends AppCompatActivity {
 
     private void removeRow(LinearLayout layoutRow) {
         // Remove the row layout from the container layout
+
         layoutRowContainer.removeView(layoutRow);
     }
 
@@ -205,6 +314,7 @@ public class MainActivity3 extends AppCompatActivity {
             LinearLayout layoutRow = (LinearLayout) layoutRowContainer.getChildAt(i);
             EditText editText = (EditText) layoutRow.getChildAt(0);
             editText.setText("");
+            removeRow(layoutRow);
         }
     }
     public class RowValues {

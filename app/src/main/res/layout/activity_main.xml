@@ -12,8 +12,8 @@
         android:background="@drawable/edit_text_border"
         android:hint="Class Name"
         android:paddingLeft="15dp"
-        android:textColorHint="@color/blue"
-        android:textColor="@color/blue"/>
+        android:textColor="@color/blue"
+        android:textColorHint="@color/blue" />
 
     <Button
         android:id="@+id/next_button_to_activity2"
