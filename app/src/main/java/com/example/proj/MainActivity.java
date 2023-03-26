@@ -43,11 +43,9 @@ String className;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         classname = findViewById(R.id.class_name_edittext);
-        params params = new params();
-        params.setClass_name(classname.getText().toString());
 
 
-        Intent intent = new Intent(this ,MainActivity2.class);
+
 
        /* String fileName = "timetable.pdf";
         PdfWriter writer;
@@ -128,13 +126,13 @@ String className;
             @Override
             public void onClick(View v) {
 
-                Intent  intent_2 = new Intent(MainActivity.this , MainActivity4.class);
-                        intent_2.putExtra("className" , classname.getText().toString() );
-
-                SharedPreferences preferences = getSharedPreferences("Main" , Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = preferences.edit();;
-                editor.putString("className",classname.getText().toString() );
-                editor.commit();
+                {
+                    SharedPreferences preferences = getSharedPreferences("Main", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("className", classname.getText().toString());
+                    editor.commit();
+                }
+                Intent intent = new Intent(MainActivity.this ,MainActivity2.class);
 
                 startActivity(intent);
             }

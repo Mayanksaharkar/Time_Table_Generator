@@ -47,154 +47,86 @@ public class MainActivity3 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3);
-        params params = new params();
-
-        generate = findViewById(R.id.generate);
-        SharedPreferences preferences_from_main = getSharedPreferences("Main" , Context.MODE_PRIVATE);
-        SharedPreferences preferences_from_main2 = getSharedPreferences("Main2" , Context.MODE_PRIVATE);
-
-//        String[] subjects = new String[preferences_from_main2.getInt("s",0)];
-//        int rowCount = tableLayout.getChildCount() ;
-//        int numWorkingDays = Integer.parseInt(preferences_from_main2.getString("wd","null"));
-//        int numSlots =Integer.parseInt(preferences_from_main2.getString("l","null"));
-        int num_sub = params.getNo_of_Sub();
-//        int[] numLectures = new int[preferences_from_main2.getInt("s",0)];
-
-
-        /*for (int i = 0; i < rowCount; i++) {
-            TableRow row = (TableRow) tableLayout.getChildAt(i);
-            TextView cell = (TextView) row.getChildAt(0);
-            subjects[i] = cell.getText().toString();
-        }
-        for (int i = 0; i < rowCount; i++) {
-            TableRow row = (TableRow) tableLayout.getChildAt(i);
-            TextView cell = (TextView) row.getChildAt(1);
-            numLectures[i] = Integer.parseInt(cell.getText().toString());
-        }*/
-
-        generate.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-  //                      String[] subjects = new String[num_sub] ;
-    //                    int rowCount = tableLayout.getChildCount() ;
-                        int numWorkingDays = Integer.parseInt(preferences_from_main2.getString("wd","null"));
-                        int numSlots =Integer.parseInt(preferences_from_main2.getString("l","null"));
-                        int[] numLectures = new int[num_sub];
-/*
-                        for (int i = 0; i < rowCount; i++) {
-                            TableRow row = (TableRow) tableLayout.getChildAt(i);
-                            TextView cell = (TextView) row.getChildAt(0);
-                            subjects[i] = cell.getText().toString();
-                        }
-                        for (int i = 0; i < rowCount; i++) {
-                            TableRow row = (TableRow) tableLayout.getChildAt(i);
-                            TextView cell = (TextView) row.getChildAt(1);
-                            numLectures[i] = Integer.parseInt(cell.getText().toString());
-                        }*/
-
-                        /*SharedPreferences preferences = getSharedPreferences("Main3" , Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = preferences.edit();;
-
-                        /////data to be passed
-                        editor.commit();
-*/
-//
-//                        Log.d("TAG", "onClick: " +subjects[0] +subjects[1] );
-
-                        Intent intent_to_Activity4 =  new Intent(MainActivity3.this,MainActivity4.class);
-
-
-                        /*intent_to_Activity4.putExtra("lectnum_array" , numLectures);
-                        intent_to_Activity4.putExtra("subname_array" , subjects);*/
-
-                        startActivity(intent_to_Activity4);
-                    }
-                }
-        );
 
         layoutRowContainer = findViewById(R.id.layout_row_container);
         btnAddRow = findViewById(R.id.btn_add_row);
         btnSubmit = findViewById(R.id.btn_submit);
         clear = findViewById(R.id.clear);
 
-        clear.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                tableLayout.removeAllViews();
-                rowValuesList.clear();
 
-            }
-
-
-        });
-
-
-        for (int i = 0 ;i<num_sub+1 ;i++){
+        generate = findViewById(R.id.generate);
+        SharedPreferences preferences_from_main2 = getSharedPreferences("Main2" , Context.MODE_PRIVATE);
+//        String[] subjects = new String[preferences_from_main2.getInt("s",0)];
+//        int rowCount = tableLayout.getChildCount() ;
+//        int numWorkingDays = Integer.parseInt(preferences_from_main2.getString("wd","null"));
+//        int numSlots =Integer.parseInt(preferences_from_main2.getString("l","null"));
+          int num_of_sub = preferences_from_main2.getInt("s",1);
+          for (int i = 0 ;i<(num_of_sub+1) ;i++){
             addRow();
-        }
+          }
+        int[] countList_array = new int[num_of_sub];
+          String[] subList_array = new String[num_of_sub];
+          int rowCount = num_of_sub;
         btnAddRow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 addRow();
             }
         });
-
         btnSubmit.setOnClickListener(new View.OnClickListener() {public void onClick(View v) {
 
-                new AlertDialog.Builder(MainActivity3.this)
-                        .setTitle("Confirm Submission")
-                        .setMessage("Are you sure you want to submit?")
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            new AlertDialog.Builder(MainActivity3.this)
+                    .setTitle("Confirm Submission")
+                    .setMessage("Are you sure you want to submit?")
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
 
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                // Submit data
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // Submit data
 
-                                storeValues();
+                            storeValues();
 
-                                tableLayout = findViewById(R.id.gridlay);
-                                int numRows = rowValuesList.size();
-                                int numCols = 2;
+                            tableLayout = findViewById(R.id.gridlay);
+                            int numRows = rowValuesList.size();
+                            int numCols = 2;
 
 // Loop through the rows and columns and add TexdtView objects to the GridLayout
 
-                                for (RowValues rowValues : rowValuesList ) {
+                            for (RowValues rowValues : rowValuesList ) {
 
-                                        String editTextValue = rowValues.getEditTextValue();
-                                        String spinnerValue = rowValues.getSpinnerValue();
+                                String editTextValue = rowValues.getEditTextValue();
+                                String spinnerValue = rowValues.getSpinnerValue();
 
-                                        TextView editTextTextView = new TextView(MainActivity3.this);
-                                        editTextTextView.setText(editTextValue);
+                                TextView editTextTextView = new TextView(MainActivity3.this);
+                                editTextTextView.setText(editTextValue);
 
-                                        TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, // Width
-                                                TableLayout.LayoutParams.WRAP_CONTENT,
-                                                1 );
-                                        editTextTextView.setLayoutParams(layoutParams);
-                                        TableRow.LayoutParams layoutParams2 = new TableRow.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT,TableLayout.LayoutParams.WRAP_CONTENT,1);
-                                        editTextTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
-                                        TextView spinnerTextView = new TextView(MainActivity3.this);
-                                        spinnerTextView.setLayoutParams(layoutParams2);
-                                        spinnerTextView.setText(spinnerValue);
-
-
-
-                                        // Create new TableRow views
-                                        TableRow tableRow = new TableRow(MainActivity3.this);
-                                        spinnerTextView.setText(spinnerValue);
-                                        tableRow.addView(editTextTextView);
-                                        tableRow.addView(spinnerTextView);
-
-                                        // Add new TableRow to TableLayout
-                                        tableLayout.addView(tableRow);
+                                TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, // Width
+                                        TableLayout.LayoutParams.WRAP_CONTENT,
+                                        1 );
+                                editTextTextView.setLayoutParams(layoutParams);
+                                TableRow.LayoutParams layoutParams2 = new TableRow.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT,TableLayout.LayoutParams.WRAP_CONTENT,1);
+                                editTextTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
+                                TextView spinnerTextView = new TextView(MainActivity3.this);
+                                spinnerTextView.setLayoutParams(layoutParams2);
+                                spinnerTextView.setText(spinnerValue);
 
 
+
+                                // Create new TableRow views
+                                TableRow tableRow = new TableRow(MainActivity3.this);
+                                spinnerTextView.setText(spinnerValue);
+                                tableRow.addView(editTextTextView);
+                                tableRow.addView(spinnerTextView);
+
+                                // Add new TableRow to TableLayout
+                                tableLayout.addView(tableRow);
 
 
 
 
-                                        // Display the values in a TextView or another UI component
+
+
+                                // Display the values in a TextView or another UI component
 
 
 
@@ -217,7 +149,7 @@ public class MainActivity3 extends AppCompatActivity {
                         gridLayout.addView(textView1 ,0);
                         gridLayout.addView(textView2,1);*/
 
-                                    }
+                            }
 
 
                     /* for (int row = 0; row < numRows; row++) {
@@ -240,32 +172,61 @@ public class MainActivity3 extends AppCompatActivity {
                 }*/
 
 
-                                submitData();
+                            submitData();
 
-                            }
-                        })
-                        .setNegativeButton("No", null)
-                        .show();
-            }
+                        }
+                    })
+                    .setNegativeButton("No", null)
+                    .show();
+        }
         });
+        clear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tableLayout.removeAllViews();
+                rowValuesList.clear();
 
 
+            }
+
+
+        });
+        generate.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        for (int i = 0; i < rowCount; i++) {
+                            TableRow row = (TableRow) tableLayout.getChildAt(i);
+                            TextView cell = (TextView) row.getChildAt(0);
+
+                            subList_array[i] = cell.getText().toString();
+                        }
+                        for (int i = 0; i < rowCount; i++) {
+                            TableRow row = (TableRow) tableLayout.getChildAt(i);
+                            TextView cell = (TextView) row.getChildAt(1);
+                            countList_array[i] = Integer.parseInt(cell.getText().toString());
+                        }
+                        Intent intent_to_Activity4 =  new Intent(MainActivity3.this,MainActivity4.class);
+
+                        /*//                      String[] subjects = new String[num_sub] ;
+                        //                    int rowCount = tableLayout.getChildCount() ;
+                        int numWorkingDays = preferences_from_main2.getInt("wd",5);
+                        int numSlots =preferences_from_main2.getInt("l",5);
+                        */
+
+
+                        intent_to_Activity4.putExtra("lectnum_array" , countList_array);
+                        intent_to_Activity4.putExtra("subname_array" , subList_array);
+
+                        startActivity(intent_to_Activity4);
+                    }
+                });
         removeRow(layoutRow);
 
 
-
-    }
-    private void submitData() {
-        // Submit data to databasre or server
-        Toast.makeText(this, "Data submitted successfully!", Toast.LENGTH_SHORT).show();
-
-    }
-
-
-
+        }
     private void addRow() {
         // Create a new row layout
-         layoutRow = new LinearLayout(this);
+        layoutRow = new LinearLayout(this);
         layoutRow.setOrientation(LinearLayout.HORIZONTAL);
         layoutRow.setLayoutParams(new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
@@ -294,7 +255,7 @@ public class MainActivity3 extends AppCompatActivity {
         // Create a new Spinner
         Spinner spinner = new Spinner(this);
         spinner.setBackground(ContextCompat.getDrawable(MainActivity3.this, R.drawable.edit_text_border));
-       /* spinner.setMinimumHeight(50);*/
+        /* spinner.setMinimumHeight(50);*/
 
         ViewGroup.LayoutParams params = spinner.getLayoutParams();
        /* params.height = .LayoutParams.MATCH_PARENT;
@@ -335,13 +296,16 @@ public class MainActivity3 extends AppCompatActivity {
         // Add the new row layout to the container layout
         layoutRowContainer.addView(layoutRow);
     }
+    private void submitData() {
+        // Submit data to databasre or server
+        Toast.makeText(this, "Data submitted successfully!", Toast.LENGTH_SHORT).show();
 
+    }
     private void removeRow(LinearLayout layoutRow) {
         // Remove the row layout from the container layout
 
         layoutRowContainer.removeView(layoutRow);
     }
-
     private void storeValues() {
         // Clear the existing row values list
         rowValuesList.clear();
@@ -373,7 +337,6 @@ public class MainActivity3 extends AppCompatActivity {
         Toast.makeText(this, "Values stored successfully"+rowValuesList, Toast.LENGTH_SHORT).show();
         clearEditTextFields();
     }
-
     private void clearEditTextFields() {
         // Iterate through all the row layouts in the container layout
         for (int i = 0; i < layoutRowContainer.getChildCount(); i++) {

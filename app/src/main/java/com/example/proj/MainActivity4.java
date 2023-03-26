@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -26,6 +27,7 @@ public class MainActivity4 extends AppCompatActivity {
         setContentView(R.layout.activity_main4);
 
         Intent intent = getIntent();
+        TableLayout tableLayout = findViewById(R.id.gridlay);
 
         SharedPreferences preferences_from_main = getSharedPreferences("Main", Context.MODE_PRIVATE);
         SharedPreferences preferences_from_main2 = getSharedPreferences("Main2", Context.MODE_PRIVATE);
@@ -33,19 +35,21 @@ public class MainActivity4 extends AppCompatActivity {
         Toast.makeText(this, "" + preferences_from_main.getString("className", null), Toast.LENGTH_LONG).show();
 
         // Define timetable variables
-        int numSubjects = Integer.parseInt(preferences_from_main2.getString("s" ,"5"));
-        int numWorkingDays = Integer.parseInt(preferences_from_main2.getString("wd", "5"));
-        int numSlotsPerDay =  Integer.parseInt(preferences_from_main2.getString("l", "5"));
+        int numSubjects = preferences_from_main2.getInt("s" ,5);
+        int numWorkingDays =preferences_from_main2.getInt("wd", 5);
+        int numSlotsPerDay =  preferences_from_main2.getInt("l", 5);
 
 
-        int[] NUMLECT = intent.getIntArrayExtra("lectnum_array");
+        int[] NUMLECT =intent.getIntArrayExtra("lectnum_array");
         String[] SUBLIST = intent.getStringArrayExtra("subname_array");
 
+        for (int i = 0 ; i <SUBLIST.length ; i++){
+            Log.d("mayank", "onCreate: "+SUBLIST[i]);
+        }
+        for (int i = 0 ; i <NUMLECT.length ; i++){
+            Log.d("mayank", "onCreate: "+NUMLECT[i]);
+        }
 
-
-       /* String[] subjectList = intent.getStringArrayExtra("subjects");
-        int[] slotsPerSubject = intent.getIntArrayExtra("lectnum_array");
-        */
 // Create blank timetable matrix
         String[][] timetable = new String[numWorkingDays][numSlotsPerDay];
         for (int i = 0; i < numWorkingDays; i++) {
@@ -71,6 +75,7 @@ public class MainActivity4 extends AppCompatActivity {
 // Find the timetable table layout
         TableLayout timetableTable = findViewById(R.id.timetable_table);
 
+
 // Add table headers
         TableRow headerRow = new TableRow(this);
         headerRow.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
@@ -80,10 +85,6 @@ public class MainActivity4 extends AppCompatActivity {
         dayHeader.setGravity(Gravity.CENTER_HORIZONTAL);
         headerRow.addView(dayHeader);
 
-        TextView slotHeader = new TextView(this);
-        slotHeader.setText("Slot");
-        slotHeader.setGravity(Gravity.CENTER_HORIZONTAL);
-        headerRow.addView(slotHeader);
 
         TextView subjectHeader = new TextView(this);
         subjectHeader.setText("Subject");
@@ -103,10 +104,10 @@ public class MainActivity4 extends AppCompatActivity {
             row.addView(dayView);
 
             for (int j = 0; j < numSlotsPerDay; j++) {
-                TextView slotView = new TextView(this);
+                /*TextView slotView = new TextView(this);
                 slotView.setText(String.valueOf(j+1));
                 slotView.setGravity(Gravity.CENTER_HORIZONTAL);
-                row.addView(slotView);
+                row.addView(slotView);*/
 
                 TextView subjectView = new TextView(this);
                 subjectView.setText(timetable[i][j]);

@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
@@ -21,18 +22,15 @@ params params = new params();
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-       /* Stringent intent = getStringent();
-        Toast.makeText(this, ""+intent.getStringExtra("className"), Toast.LENGTH_SHORT).show();
-*/
+ //       Stringent intent = getStringent();
+
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
         lect_in_a_day = findViewById(R.id.lect_in_a_day);
         working_days = findViewById(R.id.wroking_days);
         no_of_Sub = findViewById(R.id.no_of_sub);
-        String int_lect_in_a_day = lect_in_a_day.getText().toString();
-        String int_working_days = working_days.getText().toString();
-        String int_no_of_Sub =no_of_Sub.getText().toString();
-
         btn =(AppCompatButton)findViewById(R.id.btn_next);
 
 
@@ -40,9 +38,12 @@ params params = new params();
             @Override
             public void onClick(View v) {
 
-
-               params.setNo_working_days();
-
+                SharedPreferences sharedPreferences = getSharedPreferences("Main2", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putInt("l" ,Integer.parseInt(lect_in_a_day.getText().toString()));
+                editor.putInt("wd" ,Integer.parseInt(working_days.getText().toString()));
+                editor.putInt("s" ,Integer.parseInt(no_of_Sub.getText().toString()));
+                editor.commit();
                 Intent next_intent =  new Intent(MainActivity2.this , MainActivity3.class);
                 startActivity(next_intent);
             }
