@@ -116,6 +116,7 @@
         android:layout_width="113dp"
         android:layout_height="56dp"
         android:background="@drawable/button_next"
+        android:enabled="false"
         android:text="next"
         android:textColor="@color/white"
         android:textSize="14sp"

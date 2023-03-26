@@ -5,16 +5,26 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
+import com.itextpdf.kernel.geom.Rectangle;
+import com.itextpdf.kernel.pdf.PdfPage;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.kernel.pdf.canvas.PdfCanvas;
+
+import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -35,6 +45,8 @@ public class MainActivity4 extends AppCompatActivity {
         SharedPreferences preferences_from_main3 = getSharedPreferences("Main3", Context.MODE_PRIVATE);
         Toast.makeText(this, "" + preferences_from_main.getString("className", null), Toast.LENGTH_LONG).show();
 
+        TextView classname= findViewById(R.id.className);
+        classname.setText(preferences_from_main.getString("className","class name" ));
         // Define timetable variables
         int numSubjects = preferences_from_main2.getInt("s" ,5);
         int numWorkingDays =preferences_from_main2.getInt("wd", 5);
@@ -118,10 +130,10 @@ public class MainActivity4 extends AppCompatActivity {
             timetableTable.addView(row);
         }
 
-
+        AppCompatButton pdf_button = findViewById(R.id.pdf_button);
 
     }
-
 }
+
 
 

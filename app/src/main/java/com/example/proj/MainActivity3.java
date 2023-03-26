@@ -334,7 +334,6 @@ public class MainActivity3 extends AppCompatActivity {
 
         // Show a success message and clear the EditText fields
 
-        Toast.makeText(this, "Values stored successfully"+rowValuesList, Toast.LENGTH_SHORT).show();
         clearEditTextFields();
     }
     private void clearEditTextFields() {

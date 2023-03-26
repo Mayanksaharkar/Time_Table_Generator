@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -34,6 +36,28 @@ params params = new params();
         btn =(AppCompatButton)findViewById(R.id.btn_next);
 
 
+        TextWatcher textWatcher = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // Not used
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // Enable or disable the button based on the EditTexts' contents
+                boolean enabled = !lect_in_a_day.getText().toString().trim().isEmpty()
+                        && !working_days.getText().toString().trim().isEmpty() && !no_of_Sub.getText().toString().trim().isEmpty() ;
+                btn.setEnabled(enabled);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // Not used
+            }
+        };
+        lect_in_a_day.addTextChangedListener(textWatcher);
+        working_days.addTextChangedListener(textWatcher);
+        no_of_Sub.addTextChangedListener(textWatcher);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
