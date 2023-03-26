@@ -14,7 +14,7 @@ import androidx.appcompat.widget.AppCompatButton;
 public class MainActivity2 extends AppCompatActivity {
 
     EditText lect_in_a_day,working_days,no_of_Sub;
-
+params params = new params();
 
     AppCompatButton btn;
 
@@ -41,15 +41,7 @@ public class MainActivity2 extends AppCompatActivity {
             public void onClick(View v) {
 
 
-                SharedPreferences preferences = getSharedPreferences("Main2" , Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = preferences.edit();
-
-
-                editor.putString("wd" , working_days.getText().toString());
-                editor.putString("l" , lect_in_a_day.getText().toString());
-                editor.putString("s" , no_of_Sub.getText().toString());
-
-                editor.commit();
+               params.setNo_working_days();
 
                 Intent next_intent =  new Intent(MainActivity2.this , MainActivity3.class);
                 startActivity(next_intent);

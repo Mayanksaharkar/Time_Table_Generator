@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 /*
 import com.itextpdf.io.font.constants.StandardFonts;
 import com.itextpdf.kernel.font.PdfFont;
@@ -33,7 +34,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;*/
 
 public class MainActivity extends AppCompatActivity {
-Button next_button_to_activity2;
+AppCompatButton next_button_to_activity2;
 EditText classname;
 String className;
     @SuppressLint("MissingInflatedId")
@@ -41,8 +42,9 @@ String className;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         classname = findViewById(R.id.class_name_edittext);
+        params params = new params();
+        params.setClass_name(classname.getText().toString());
 
 
         Intent intent = new Intent(this ,MainActivity2.class);
@@ -121,7 +123,7 @@ String className;
 */
 
 
-        next_button_to_activity2 = (Button)findViewById(R.id.next_button_to_activity2) ;
+        next_button_to_activity2 = (AppCompatButton) findViewById(R.id.next_button_to_activity2);
         next_button_to_activity2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

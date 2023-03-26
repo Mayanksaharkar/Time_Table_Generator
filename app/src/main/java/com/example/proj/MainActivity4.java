@@ -2,8 +2,10 @@ package com.example.proj;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -11,85 +13,114 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Arrays;
+import java.util.Random;
+
 public class MainActivity4 extends AppCompatActivity {
 
-    TextView  classNAme,workingdays,lectures,subjects;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main4);
 
-        TableLayout tableLayout = findViewById(R.id.gridlay);
-        TableLayout table = findViewById(R.id.table);
-        classNAme=findViewById(R.id.classNAme);
-        workingdays=findViewById(R.id.workingdays);
-        lectures=findViewById(R.id.lectures);
-        subjects=findViewById(R.id.subjects);
+        Intent intent = getIntent();
 
-        SharedPreferences preferences_from_main = getSharedPreferences("Main" , Context.MODE_PRIVATE);
-        SharedPreferences preferences_from_main2 = getSharedPreferences("Main2" , Context.MODE_PRIVATE);
-        SharedPreferences preferences_from_main3 = getSharedPreferences("Main3" , Context.MODE_PRIVATE);
-          Toast.makeText(this, ""+preferences_from_main.getString("className" , null), Toast.LENGTH_LONG).show();
+        SharedPreferences preferences_from_main = getSharedPreferences("Main", Context.MODE_PRIVATE);
+        SharedPreferences preferences_from_main2 = getSharedPreferences("Main2", Context.MODE_PRIVATE);
+        SharedPreferences preferences_from_main3 = getSharedPreferences("Main3", Context.MODE_PRIVATE);
+        Toast.makeText(this, "" + preferences_from_main.getString("className", null), Toast.LENGTH_LONG).show();
 
-        classNAme.setText(preferences_from_main.getString("className" ,"null"));
-        workingdays.setText(preferences_from_main2.getString("wd" , "null"));
-        lectures.setText(preferences_from_main2.getString("l" , "null"));
-        subjects.setText(preferences_from_main2.getString("s" , "null"));
+        // Define timetable variables
+        int numSubjects = Integer.parseInt(preferences_from_main2.getString("s" ,"5"));
+        int numWorkingDays = Integer.parseInt(preferences_from_main2.getString("wd", "5"));
+        int numSlotsPerDay =  Integer.parseInt(preferences_from_main2.getString("l", "5"));
 
 
-
-        int numSubjects = Integer.parseInt(preferences_from_main2.getString("wd" , "null"));
-       /* Toast.makeText(this, ""+numSubjects, Toast.LENGTH_SHORT).show();*/
-        int[] numLectures = new int[numSubjects];
-        String[] subjects = new String[numSubjects];
-        int rowCount = tableLayout.getChildCount() ;
-        int numWorkingDays = Integer.parseInt(preferences_from_main2.getString("wd","null"));
-        int numSlots =Integer.parseInt(preferences_from_main2.getString("l","null"));
+        int[] NUMLECT = intent.getIntArrayExtra("lectnum_array");
+        String[] SUBLIST = intent.getStringArrayExtra("subname_array");
 
 
-        for (int i = 0; i < rowCount; i++) {
-            TableRow row = (TableRow) tableLayout.getChildAt(i);
-            TextView cell = (TextView) row.getChildAt(0);
-            subjects[i] = cell.getText().toString();
-        }
-        for (int i = 0; i < rowCount; i++) {
-            TableRow row = (TableRow) tableLayout.getChildAt(i);
-            TextView cell = (TextView) row.getChildAt(1);
-            numLectures[i] = Integer.parseInt(cell.getText().toString());
-        }
 
-        String[][] timetable = new String[numWorkingDays][numSlots];
-
-        int subjectIndex = 0;
-        int lectureCount = 0;
-
+       /* String[] subjectList = intent.getStringArrayExtra("subjects");
+        int[] slotsPerSubject = intent.getIntArrayExtra("lectnum_array");
+        */
+// Create blank timetable matrix
+        String[][] timetable = new String[numWorkingDays][numSlotsPerDay];
         for (int i = 0; i < numWorkingDays; i++) {
+            Arrays.fill(timetable[i], "");
+        }
+
+// Assign slots for each subject
+        Random random = new Random();
+        for (int i = 0; i < numSubjects; i++) {
+            String sub = SUBLIST[i];
+            int numSlots = NUMLECT[i];
             for (int j = 0; j < numSlots; j++) {
-                timetable[i][j] = subjects[subjectIndex];
-                lectureCount++;
-
-                if (lectureCount == numLectures[subjectIndex]) {
-                    subjectIndex++;
-                    lectureCount = 0;
+                int day = random.nextInt(numWorkingDays);
+                int slot = random.nextInt(numSlotsPerDay);
+                while (!timetable[day][slot].equals("")) {
+                    day = random.nextInt(numWorkingDays);
+                    slot = random.nextInt(numSlotsPerDay);
                 }
-
-                if (subjectIndex == numSubjects) {
-                    subjectIndex = 0;
-                }
+                timetable[day][slot] = sub;
             }
         }
 
-        for (int i = 0; i < timetable.length; i++) {
-            TableRow row = new TableRow(MainActivity4.this);
-            for (int j = 0; j < timetable[i].length; j++) {
-                TextView cell = new TextView(this);
-                cell.setText(String.valueOf(timetable[i][j]));
-                row.addView(cell);
+// Find the timetable table layout
+        TableLayout timetableTable = findViewById(R.id.timetable_table);
+
+// Add table headers
+        TableRow headerRow = new TableRow(this);
+        headerRow.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
+
+        TextView dayHeader = new TextView(this);
+        dayHeader.setText("Day");
+        dayHeader.setGravity(Gravity.CENTER_HORIZONTAL);
+        headerRow.addView(dayHeader);
+
+        TextView slotHeader = new TextView(this);
+        slotHeader.setText("Slot");
+        slotHeader.setGravity(Gravity.CENTER_HORIZONTAL);
+        headerRow.addView(slotHeader);
+
+        TextView subjectHeader = new TextView(this);
+        subjectHeader.setText("Subject");
+        subjectHeader.setGravity(Gravity.CENTER_HORIZONTAL);
+        headerRow.addView(subjectHeader);
+
+        timetableTable.addView(headerRow);
+
+// Add table content
+        for (int i = 0; i < numWorkingDays; i++) {
+            TableRow row = new TableRow(this);
+            row.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
+
+            TextView dayView = new TextView(this);
+            dayView.setText(String.valueOf(i+1));
+            dayView.setGravity(Gravity.CENTER_HORIZONTAL);
+            row.addView(dayView);
+
+            for (int j = 0; j < numSlotsPerDay; j++) {
+                TextView slotView = new TextView(this);
+                slotView.setText(String.valueOf(j+1));
+                slotView.setGravity(Gravity.CENTER_HORIZONTAL);
+                row.addView(slotView);
+
+                TextView subjectView = new TextView(this);
+                subjectView.setText(timetable[i][j]);
+                subjectView.setGravity(Gravity.CENTER_HORIZONTAL);
+                row.addView(subjectView);
             }
-            table.addView(row);
+
+            timetableTable.addView(row);
         }
+
+
 
     }
 
 }
+
+

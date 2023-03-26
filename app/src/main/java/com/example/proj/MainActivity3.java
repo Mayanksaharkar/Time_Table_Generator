@@ -1,8 +1,10 @@
 package com.example.proj;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,7 +33,7 @@ import java.util.ArrayList;
 
 public class MainActivity3 extends AppCompatActivity {
 
-    TableLayout tableLayout;
+   public TableLayout tableLayout;
     LinearLayout layoutRow;
     private LinearLayout layoutRowContainer;
     private Button btnAddRow;
@@ -45,13 +47,68 @@ public class MainActivity3 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3);
+        params params = new params();
 
         generate = findViewById(R.id.generate);
+        SharedPreferences preferences_from_main = getSharedPreferences("Main" , Context.MODE_PRIVATE);
+        SharedPreferences preferences_from_main2 = getSharedPreferences("Main2" , Context.MODE_PRIVATE);
+
+//        String[] subjects = new String[preferences_from_main2.getInt("s",0)];
+//        int rowCount = tableLayout.getChildCount() ;
+//        int numWorkingDays = Integer.parseInt(preferences_from_main2.getString("wd","null"));
+//        int numSlots =Integer.parseInt(preferences_from_main2.getString("l","null"));
+        int num_sub = params.getNo_of_Sub();
+//        int[] numLectures = new int[preferences_from_main2.getInt("s",0)];
+
+
+        /*for (int i = 0; i < rowCount; i++) {
+            TableRow row = (TableRow) tableLayout.getChildAt(i);
+            TextView cell = (TextView) row.getChildAt(0);
+            subjects[i] = cell.getText().toString();
+        }
+        for (int i = 0; i < rowCount; i++) {
+            TableRow row = (TableRow) tableLayout.getChildAt(i);
+            TextView cell = (TextView) row.getChildAt(1);
+            numLectures[i] = Integer.parseInt(cell.getText().toString());
+        }*/
+
         generate.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
+  //                      String[] subjects = new String[num_sub] ;
+    //                    int rowCount = tableLayout.getChildCount() ;
+                        int numWorkingDays = Integer.parseInt(preferences_from_main2.getString("wd","null"));
+                        int numSlots =Integer.parseInt(preferences_from_main2.getString("l","null"));
+                        int[] numLectures = new int[num_sub];
+/*
+                        for (int i = 0; i < rowCount; i++) {
+                            TableRow row = (TableRow) tableLayout.getChildAt(i);
+                            TextView cell = (TextView) row.getChildAt(0);
+                            subjects[i] = cell.getText().toString();
+                        }
+                        for (int i = 0; i < rowCount; i++) {
+                            TableRow row = (TableRow) tableLayout.getChildAt(i);
+                            TextView cell = (TextView) row.getChildAt(1);
+                            numLectures[i] = Integer.parseInt(cell.getText().toString());
+                        }*/
+
+                        /*SharedPreferences preferences = getSharedPreferences("Main3" , Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = preferences.edit();;
+
+                        /////data to be passed
+                        editor.commit();
+*/
+//
+//                        Log.d("TAG", "onClick: " +subjects[0] +subjects[1] );
+
                         Intent intent_to_Activity4 =  new Intent(MainActivity3.this,MainActivity4.class);
+
+
+                        /*intent_to_Activity4.putExtra("lectnum_array" , numLectures);
+                        intent_to_Activity4.putExtra("subname_array" , subjects);*/
+
                         startActivity(intent_to_Activity4);
                     }
                 }
@@ -74,6 +131,9 @@ public class MainActivity3 extends AppCompatActivity {
         });
 
 
+        for (int i = 0 ;i<num_sub+1 ;i++){
+            addRow();
+        }
         btnAddRow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
