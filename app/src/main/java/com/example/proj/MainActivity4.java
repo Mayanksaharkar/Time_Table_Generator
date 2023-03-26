@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -77,21 +78,24 @@ public class MainActivity4 extends AppCompatActivity {
 
 
 // Add table headers
-        TableRow headerRow = new TableRow(this);
+       /* TableRow headerRow = new TableRow(this);
         headerRow.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
+        headerRow.setBackgroundColor(Integer.parseInt(String.valueOf(Color.RED)));
 
         TextView dayHeader = new TextView(this);
         dayHeader.setText("Day");
         dayHeader.setGravity(Gravity.CENTER_HORIZONTAL);
+        dayHeader.setTextSize(15);
         headerRow.addView(dayHeader);
 
 
         TextView subjectHeader = new TextView(this);
         subjectHeader.setText("Subject");
         subjectHeader.setGravity(Gravity.CENTER_HORIZONTAL);
+        subjectHeader.setTextSize(15);
         headerRow.addView(subjectHeader);
 
-        timetableTable.addView(headerRow);
+        timetableTable.addView(headerRow);*/
 
 // Add table content
         for (int i = 0; i < numWorkingDays; i++) {
@@ -104,10 +108,6 @@ public class MainActivity4 extends AppCompatActivity {
             row.addView(dayView);
 
             for (int j = 0; j < numSlotsPerDay; j++) {
-                /*TextView slotView = new TextView(this);
-                slotView.setText(String.valueOf(j+1));
-                slotView.setGravity(Gravity.CENTER_HORIZONTAL);
-                row.addView(slotView);*/
 
                 TextView subjectView = new TextView(this);
                 subjectView.setText(timetable[i][j]);
