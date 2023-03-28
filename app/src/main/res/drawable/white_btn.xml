@@ -2,14 +2,15 @@
     <!-- Gray shadow. -->
     <item android:left="7dp" android:top="10dp">
         <shape>
-            <gradient android:startColor="#75FFFFFF" android:endColor="#5EFFFFFF"/>
+            <gradient android:startColor="#0067F6" android:endColor="#5EFFFFFF"/>
             <corners android:radius="15dp" />
         </shape>
     </item>
     <!-- White foreground. -->
     <item android:bottom="5dp" android:right="3dp">
         <shape>
-            <gradient android:centerColor="@color/white"  android:startColor="@color/white" android:endColor="@color/white" android:angle="90"/>
+            <gradient   android:startColor="@color/blue" android:endColor="@color/blue
+" android:angle="360"/>
 
             <corners android:radius="15dp" />
         </shape>

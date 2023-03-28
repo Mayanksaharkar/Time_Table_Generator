@@ -1,24 +1,23 @@
-<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/layout_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@drawable/bg"
-    android:theme="@style/Theme.Material3.Dark.NoActionBar"
-    >
+    android:orientation="vertical"
+    android:theme="@style/Theme.Material3.Dark.NoActionBar">
 
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="10dp"
         android:text="Prepare Subject List"
         android:textColor="@color/white"
         android:textSize="30sp"
-        android:layout_marginStart="15dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -44,10 +43,9 @@
         android:id="@+id/layout_row_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:showDividers="middle"
         android:divider="@drawable/empty_tall_divider"
-        >
+        android:orientation="vertical"
+        android:showDividers="middle">
 
         <!-- Placeholder for dynamically added rows -->
 
@@ -62,8 +60,8 @@
             android:id="@+id/btn_submit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Submit"
             android:background="@drawable/button_next"
+            android:text="Submit"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
@@ -78,8 +76,7 @@
         <TableLayout
             android:id="@+id/tableLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
+            android:layout_height="wrap_content">
 
             <TableRow>
 
@@ -109,8 +106,7 @@
         <TableLayout
             android:id="@+id/gridlay"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            ></TableLayout>
+            android:layout_height="wrap_content"></TableLayout>
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -119,16 +115,17 @@
         android:padding="5dp">
 
         <androidx.appcompat.widget.AppCompatButton
-            android:background="@drawable/button_next"
             android:id="@+id/clear"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/button_next"
             android:text="clear"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -8,6 +8,14 @@
     tools:context=".MainActivity2">
 
 
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="70dp"
+        android:layout_height="62dp"
+        app:srcCompat="@drawable/ic_launcher"
+        tools:layout_editor_absoluteX="3dp"
+        tools:layout_editor_absoluteY="1dp" />
+
     <EditText
         android:id="@+id/lect_in_a_day"
         android:layout_width="70dp"

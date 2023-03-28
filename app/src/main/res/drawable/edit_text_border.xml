@@ -5,8 +5,8 @@
 
     <!-- Set the corner radius of the EditText -->
     <corners
-        android:radius="10dp" /> <gradient android:startColor="#9E9584FF" android:endColor="#8EFC408C"/>
-    <stroke android:width="3dp" android:color="#D9FC6EA7"/>
+        android:radius="10dp" /> <gradient android:startColor="#0067F6" android:endColor="#0067F6"/>
+    <stroke android:width="3dp" android:color="#ffff"/>
 
     <!-- Set the background color of the EditText -->
 

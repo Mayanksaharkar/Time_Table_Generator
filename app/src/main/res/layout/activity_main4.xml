@@ -1,12 +1,10 @@
-
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal"
-    android:background="@drawable/table_bg">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/table_bg"
+    android:orientation="horizontal">
 
     <TextView
         android:id="@+id/className"
@@ -58,17 +56,25 @@
         android:id="@+id/pdf_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Generate PDF"
-        android:textStyle="bold"
-        android:padding="20dp"
-        android:textColor="@color/pink"
         android:background="@drawable/white_btn"
+        android:padding="20dp"
+        android:text="Generate PDF"
+        android:textColor="@color/pink"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/timetable_table"
-        app:layout_constraintVertical_bias="0.114"
-        />
+        app:layout_constraintVertical_bias="0.114" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="414dp"
+        android:layout_height="204dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:srcCompat="@drawable/ty"
+        tools:layout_editor_absoluteX="-2dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
