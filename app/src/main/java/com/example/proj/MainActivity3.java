@@ -120,60 +120,8 @@ public class MainActivity3 extends AppCompatActivity {
 
                                 // Add new TableRow to TableLayout
                                 tableLayout.addView(tableRow);
-
-
-
-
-
-
-                                // Display the values in a TextView or another UI component
-
-
-
-
-                       /* TextView textView1 = new TextView(MainActivity3.this);
-                        textView1.setText(editTextValue);
-                        TextView textView2 = new TextView(MainActivity3.this);
-                        textView2.setText(spinnerValue);
-
-                        GridLayout.LayoutParams params1 = new GridLayout.LayoutParams();
-                        params1.columnSpec = GridLayout.spec(0); // Column 0
-                        params1.rowSpec = GridLayout.spec(0); // Row 0
-                        textView1.setLayoutParams(params1);
-
-                        GridLayout.LayoutParams params2 = new GridLayout.LayoutParams();
-                        params2.columnSpec = GridLayout.spec(1); // Column 1
-                        params2.rowSpec = GridLayout.spec(0); // Row 0
-                        textView2.setLayoutParams(params2);
-
-                        gridLayout.addView(textView1 ,0);
-                        gridLayout.addView(textView2,1);*/
-
                             }
-
-
-                    /* for (int row = 0; row < numRows; row++) {
-                        for (int col = 0; col < numCols; col++) {
-                            // Create a new TextView object
-                            TextView textView = new TextView(MainActivity3.this);
-                            textView.setText(editTextValue);
-                            TextView textView2 = new TextView(MainActivity3.this);
-                            textView.setText(spinnerValue);
-
-
-                            // Define the row and column position for the TextView
-
-
-                            // Add the TextView to the GridLayout
-
-                        }
-
-                    // Display the values in a TextView or another UI component
-                }*/
-
-
                             submitData();
-
                         }
                     })
                     .setNegativeButton("No", null)
@@ -206,14 +154,6 @@ public class MainActivity3 extends AppCompatActivity {
                             countList_array[i] = Integer.parseInt(cell.getText().toString());
                         }
                         Intent intent_to_Activity4 =  new Intent(MainActivity3.this,MainActivity4.class);
-
-                        /*//                      String[] subjects = new String[num_sub] ;
-                        //                    int rowCount = tableLayout.getChildCount() ;
-                        int numWorkingDays = preferences_from_main2.getInt("wd",5);
-                        int numSlots =preferences_from_main2.getInt("l",5);
-                        */
-
-
                         intent_to_Activity4.putExtra("lectnum_array" , countList_array);
                         intent_to_Activity4.putExtra("subname_array" , subList_array);
 
@@ -258,11 +198,6 @@ public class MainActivity3 extends AppCompatActivity {
         /* spinner.setMinimumHeight(50);*/
 
         ViewGroup.LayoutParams params = spinner.getLayoutParams();
-       /* params.height = .LayoutParams.MATCH_PARENT;
-        spinner.setLayoutParams(params);
-        *//*spinner.colo(ContextCompat.getColor(MainActivity3.this, R.color.blue));
-        spinner.setTextColor(ContextCompat.getColor(MainActivity3.this, R.color.blue));
-*/
         spinner.setLayoutParams(new LinearLayout.LayoutParams(
                 0,
                 LinearLayout.LayoutParams.MATCH_PARENT,

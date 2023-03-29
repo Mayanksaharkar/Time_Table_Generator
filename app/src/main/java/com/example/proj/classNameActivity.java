@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,7 +33,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.FileOutputStream;
 import java.io.IOException;*/
 
-public class MainActivity extends AppCompatActivity {
+public class classNameActivity extends AppCompatActivity {
 AppCompatButton next_button_to_activity2;
 EditText classname;
 String className;
@@ -42,7 +41,7 @@ String className;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_class_name);
         classname = findViewById(R.id.class_name_edittext);
 
 
@@ -149,7 +148,7 @@ String className;
                     editor.putString("className", classname.getText().toString());
                     editor.commit();
                 }
-                Intent intent = new Intent(MainActivity.this ,MainActivity2.class);
+                Intent intent = new Intent(classNameActivity.this ,MainActivity2.class);
 
                 startActivity(intent);
             }

@@ -7,25 +7,16 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF"
     tools:context=".SplashActivity">
-
+    
     <VideoView
         android:id="@+id/videoView"
-        android:layout_width="581dp"
-        android:layout_height="581dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="417dp"
-        android:layout_height="186dp"
-        android:verticalScrollbarPosition="defaultPosition"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:srcCompat="@drawable/slogan"
-        tools:layout_editor_absoluteX="-5dp" />
+    </VideoView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

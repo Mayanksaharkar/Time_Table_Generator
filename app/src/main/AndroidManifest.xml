@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -10,27 +11,26 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@drawable/ic_launcher"
         android:label="Time Table Generator"
+        android:requestLegacyExternalStorage="true"
         android:supportsRtl="true"
         android:theme="@style/Theme.Proj"
         tools:targetApi="31">
-
-        <activity android:name=".SplashActivity"
+        <activity
+            android:name=".create_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-        <activity
-            android:name=".MainActivity"/>
-        <activity
-            android:name=".MainActivity4"/>
-        <activity
-            android:name=".MainActivity2"/>
-        <activity
-            android:name=".MainActivity3"/>
+        <activity android:name=".classNameActivity" />
+        <activity android:name=".MainActivity4" />
+        <activity android:name=".MainActivity2" />
+        <activity android:name=".MainActivity3" />
     </application>
 
 </manifest>
