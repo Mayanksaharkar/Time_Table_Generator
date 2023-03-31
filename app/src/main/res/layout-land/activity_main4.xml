@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-android:background="@color/white"
+
     android:orientation="horizontal"
     >
 
@@ -12,8 +12,7 @@ android:background="@color/white"
         android:id="@+id/className"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:text=""
+        android:text="awdwdwda"
 android:layout_marginTop="30dp"
         android:textAllCaps="true"
         android:textSize="25dp"
@@ -40,8 +39,6 @@ android:layout_marginTop="30dp"
                 android:layout_weight="1"
                 android:text="Days"
                 android:textSize="20dp"
-                android:textColor="@color/black"
-
                 android:fontFamily="@font/oswald"
                 android:textStyle="bold"/>
 
@@ -51,8 +48,6 @@ android:layout_marginTop="30dp"
                 android:textAlignment="center"
                 android:textSize="20dp"
                 android:fontFamily="@font/oswald"
-                android:textColor="@color/black"
-
                 android:textStyle="bold"/>
         </TableRow>
     </TableLayout>

@@ -114,14 +114,16 @@ public class MainActivity4 extends AppCompatActivity {
 
             dayView.setText(day_arr[i]);
             dayView.setAllCaps(false);
+            dayView.setTextColor(Color.BLACK);
             dayView.setGravity(Gravity.CENTER_HORIZONTAL);
+            dayView.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
             row.addView(dayView);
-
             for (int j = 0; j < numSlotsPerDay; j++) {
-
                 TextView subjectView = new TextView(this);
                 subjectView.setText(timetable[i][j]);
+                subjectView.setTextColor(Color.BLACK);
                 subjectView.setGravity(Gravity.CENTER_HORIZONTAL);
+                subjectView.setPadding(5,10,5,10);
                 subjectView.setAllCaps(true);
                 row.addView(subjectView);
             }

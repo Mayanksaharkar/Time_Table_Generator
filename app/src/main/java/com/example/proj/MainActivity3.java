@@ -32,16 +32,14 @@ import java.util.ArrayList;
 
 
 public class MainActivity3 extends AppCompatActivity {
-
    public TableLayout tableLayout;
     LinearLayout layoutRow;
     private LinearLayout layoutRowContainer;
     private Button btnAddRow;
     private Button btnSubmit , clear ,generate;
-
+    TextView textView1, textView2;
     public static ArrayList<RowValues> rowValuesList = new ArrayList<>();
     AlertDialog alert ;
-
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +55,8 @@ public class MainActivity3 extends AppCompatActivity {
         generate = findViewById(R.id.generate);
         SharedPreferences preferences_from_main2 = getSharedPreferences("Main2" , Context.MODE_PRIVATE);
 
+        textView1 = findViewById(R.id.textview1);
+        textView2 = findViewById(R.id.textview2);
           int num_of_sub = preferences_from_main2.getInt("s",1);
           for (int i = 0 ;i<(num_of_sub+1) ;i++){
             addRow();
@@ -74,6 +74,11 @@ public class MainActivity3 extends AppCompatActivity {
 
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+                            textView1.setVisibility(View.VISIBLE);
+                            textView2.setVisibility(View.VISIBLE);
+                            generate.setVisibility(View.VISIBLE);
+                            layoutRow.removeAllViews();
+
 
                             storeValues();
 
@@ -96,33 +101,33 @@ public class MainActivity3 extends AppCompatActivity {
                                 editTextTextView.setLayoutParams(layoutParams);
                                 TableRow.LayoutParams layoutParams2 = new TableRow.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT,TableLayout.LayoutParams.WRAP_CONTENT,1);
                                 editTextTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
+                                editTextTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                                editTextTextView.setTextColor(Color.WHITE);
+
                                 TextView spinnerTextView = new TextView(MainActivity3.this);
                                 spinnerTextView.setLayoutParams(layoutParams2);
                                 spinnerTextView.setText(spinnerValue);
+                                spinnerTextView.setTextColor(Color.WHITE);
 
                                 TableRow tableRow = new TableRow(MainActivity3.this);
+                                spinnerTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                                 spinnerTextView.setText(spinnerValue);
                                 tableRow.addView(editTextTextView);
                                 tableRow.addView(spinnerTextView);
 
                                 tableLayout.addView(tableRow);
-                                tableLayout.setVisibility(View.VISIBLE);
                             }
                             submitData();
-
-
                         }
                     })
                     .setNegativeButton("No", null)
                     .show();
-
         }
         });
         clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tableLayout.removeAllViews();
-                rowValuesList.clear();
+                recreate();
             }
 
 
@@ -201,20 +206,7 @@ public class MainActivity3 extends AppCompatActivity {
         layoutRow.addView(spinner);
 
         // Create a new "Remove Row" button
-        Button btnRemoveRow = new Button(this);
-        btnRemoveRow.setLayoutParams(new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-        ));
-        btnRemoveRow.setBackground(ContextCompat.getDrawable(MainActivity3.this, R.drawable.edit_text_border));
-        btnRemoveRow.setText("Remove Row");
-        btnRemoveRow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                removeRow(layoutRow);
-            }
-        });
-        layoutRow.addView(btnRemoveRow);
+
 
         // Add the new row layout to the container layout
         layoutRowContainer.addView(layoutRow);
@@ -232,7 +224,6 @@ public class MainActivity3 extends AppCompatActivity {
         // Clear the existing row values list
         rowValuesList.clear();
 
-        // Iterate through all the row layouts in the container layout
         for (int i = 0; i < layoutRowContainer.getChildCount(); i++) {
             LinearLayout layoutRow = (LinearLayout) layoutRowContainer.getChildAt(i);
 
@@ -264,8 +255,10 @@ public class MainActivity3 extends AppCompatActivity {
             LinearLayout layoutRow = (LinearLayout) layoutRowContainer.getChildAt(i);
             EditText editText = (EditText) layoutRow.getChildAt(0);
             editText.setText("");
-            removeRow(layoutRow);
+
+
         }
+        layoutRowContainer.removeAllViews();
     }
     public class RowValues {
         private String editTextValue;
