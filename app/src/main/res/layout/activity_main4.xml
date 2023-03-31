@@ -12,29 +12,32 @@
         android:layout_height="wrap_content"
         android:text=""
         android:textSize="20dp"
+        android:textAllCaps="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <TableLayout
         android:id="@+id/tableLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/className"
-        tools:ignore="MissingConstraints">
+        tools:ignore="MissingConstraints"
+        >
 
         <TableRow>
 
             <TextView
+                android:layout_width="12dp"
                 android:layout_weight="1"
+android:textAlignment="center"
                 android:text="Days"
-                android:textColor="@color/white"
                 android:textSize="20dp" />
 
             <TextView
                 android:layout_weight="5"
                 android:text="Subjects"
                 android:textAlignment="center"
-                android:textColor="@color/white"
                 android:textSize="20dp" />
         </TableRow>
     </TableLayout>
@@ -50,7 +53,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableLayout2" />
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout2"
+        />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/pdf_button"
@@ -66,16 +70,15 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/timetable_table"
-        app:layout_constraintVertical_bias="0.114" />
+        app:layout_constraintVertical_bias="0.114"
+        android:visibility="invisible"/>
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="414dp"
-        android:layout_height="204dp"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/ty"
-        tools:layout_editor_absoluteX="-3dp" />
+        tools:layout_editor_absoluteX="0dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

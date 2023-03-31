@@ -49,17 +49,14 @@ public class MainActivity3 extends AppCompatActivity {
         setContentView(R.layout.activity_main3);
 
         layoutRowContainer = findViewById(R.id.layout_row_container);
-        btnAddRow = findViewById(R.id.btn_add_row);
+
         btnSubmit = findViewById(R.id.btn_submit);
         clear = findViewById(R.id.clear);
 
 
         generate = findViewById(R.id.generate);
         SharedPreferences preferences_from_main2 = getSharedPreferences("Main2" , Context.MODE_PRIVATE);
-//        String[] subjects = new String[preferences_from_main2.getInt("s",0)];
-//        int rowCount = tableLayout.getChildCount() ;
-//        int numWorkingDays = Integer.parseInt(preferences_from_main2.getString("wd","null"));
-//        int numSlots =Integer.parseInt(preferences_from_main2.getString("l","null"));
+
           int num_of_sub = preferences_from_main2.getInt("s",1);
           for (int i = 0 ;i<(num_of_sub+1) ;i++){
             addRow();
@@ -67,12 +64,7 @@ public class MainActivity3 extends AppCompatActivity {
         int[] countList_array = new int[num_of_sub];
           String[] subList_array = new String[num_of_sub];
           int rowCount = num_of_sub;
-        btnAddRow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                addRow();
-            }
-        });
+
         btnSubmit.setOnClickListener(new View.OnClickListener() {public void onClick(View v) {
 
             new AlertDialog.Builder(MainActivity3.this)
@@ -82,7 +74,6 @@ public class MainActivity3 extends AppCompatActivity {
 
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            // Submit data
 
                             storeValues();
 
@@ -90,7 +81,6 @@ public class MainActivity3 extends AppCompatActivity {
                             int numRows = rowValuesList.size();
                             int numCols = 2;
 
-// Loop through the rows and columns and add TexdtView objects to the GridLayout
 
                             for (RowValues rowValues : rowValuesList ) {
 
@@ -110,22 +100,22 @@ public class MainActivity3 extends AppCompatActivity {
                                 spinnerTextView.setLayoutParams(layoutParams2);
                                 spinnerTextView.setText(spinnerValue);
 
-
-
-                                // Create new TableRow views
                                 TableRow tableRow = new TableRow(MainActivity3.this);
                                 spinnerTextView.setText(spinnerValue);
                                 tableRow.addView(editTextTextView);
                                 tableRow.addView(spinnerTextView);
 
-                                // Add new TableRow to TableLayout
                                 tableLayout.addView(tableRow);
+                                tableLayout.setVisibility(View.VISIBLE);
                             }
                             submitData();
+
+
                         }
                     })
                     .setNegativeButton("No", null)
                     .show();
+
         }
         });
         clear.setOnClickListener(new View.OnClickListener() {
@@ -133,8 +123,6 @@ public class MainActivity3 extends AppCompatActivity {
             public void onClick(View v) {
                 tableLayout.removeAllViews();
                 rowValuesList.clear();
-
-
             }
 
 
@@ -237,8 +225,7 @@ public class MainActivity3 extends AppCompatActivity {
 
     }
     private void removeRow(LinearLayout layoutRow) {
-        // Remove the row layout from the container layout
-
+        layoutRowContainer.removeView(layoutRow);
         layoutRowContainer.removeView(layoutRow);
     }
     private void storeValues() {

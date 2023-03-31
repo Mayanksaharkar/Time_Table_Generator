@@ -75,6 +75,7 @@ public class MainActivity4 extends AppCompatActivity {
 
         int[] NUMLECT =intent.getIntArrayExtra("lectnum_array");
         String[] SUBLIST = intent.getStringArrayExtra("subname_array");
+        String[] day_arr = new String[]{"Monday" , "Tuesday" , "Wednesday" , "Thursday" , "Friday" , "Saturday" , "Sunday"};
 
         for (int i = 0 ; i <SUBLIST.length ; i++){
             Log.d("mayank", "onCreate: "+SUBLIST[i]);
@@ -110,7 +111,9 @@ public class MainActivity4 extends AppCompatActivity {
             row.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
 
             TextView dayView = new TextView(this);
-            dayView.setText(String.valueOf(i+1));
+
+            dayView.setText(day_arr[i]);
+            dayView.setAllCaps(false);
             dayView.setGravity(Gravity.CENTER_HORIZONTAL);
             row.addView(dayView);
 
@@ -119,13 +122,14 @@ public class MainActivity4 extends AppCompatActivity {
                 TextView subjectView = new TextView(this);
                 subjectView.setText(timetable[i][j]);
                 subjectView.setGravity(Gravity.CENTER_HORIZONTAL);
+                subjectView.setAllCaps(true);
                 row.addView(subjectView);
             }
 
             timetableTable.addView(row);
         }
 
-        AppCompatButton pdf_button = findViewById(R.id.pdf_button);
+        /*AppCompatButton pdf_button = findViewById(R.id.pdf_button);
         bmp = BitmapFactory.decodeResource(getResources(), R.drawable.bg_create_new_activity);
         scaledbmp = Bitmap.createScaledBitmap(bmp, 140, 140, false);
 
@@ -139,10 +143,10 @@ public class MainActivity4 extends AppCompatActivity {
             public void onClick(View v) {
                 generatePDF();
             }
-        });
+        });*/
 
     }
-    private void generatePDF(){
+    /*private void generatePDF(){
         PdfDocument pdfDocument = new PdfDocument();
 
         Paint paint = new Paint();
@@ -216,7 +220,7 @@ public class MainActivity4 extends AppCompatActivity {
                 }
             }
         }
-    }
+    }*/
 
 }
 
