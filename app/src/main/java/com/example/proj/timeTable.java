@@ -34,20 +34,13 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import com.itextpdf.kernel.geom.Rectangle;
-import com.itextpdf.kernel.pdf.PdfPage;
-import com.itextpdf.kernel.pdf.PdfWriter;
-import com.itextpdf.kernel.pdf.canvas.PdfCanvas;
-
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.Random;
 
-public class MainActivity4 extends AppCompatActivity {
+public class timeTable extends AppCompatActivity {
     int pageHeight = 1120;
     int pagewidth = 792;
     Bitmap bmp, scaledbmp;
@@ -58,7 +51,7 @@ public class MainActivity4 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main4);
+        setContentView(R.layout.time_table);
 
 
 
@@ -208,7 +201,7 @@ public class MainActivity4 extends AppCompatActivity {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 pdfDocument.writeTo(Files.newOutputStream(file.toPath()));
             }
-            Toast.makeText(MainActivity4.this, "PDF file generated successfully.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(timeTable.this, "PDF file generated successfully.", Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
             e.printStackTrace();
         }

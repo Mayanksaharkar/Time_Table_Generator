@@ -71,7 +71,7 @@ String className;
                     editor.putString("className", classname.getText().toString());
                     editor.commit();
                 }
-                Intent intent = new Intent(classNameActivity.this ,MainActivity2.class);
+                Intent intent = new Intent(classNameActivity.this , num_inputs.class);
 
                 startActivity(intent);
             }

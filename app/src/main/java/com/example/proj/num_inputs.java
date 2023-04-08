@@ -13,7 +13,7 @@ import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
-public class MainActivity2 extends AppCompatActivity {
+public class num_inputs extends AppCompatActivity {
 
     EditText lect_in_a_day,working_days,no_of_Sub;
     AppCompatButton btn;
@@ -65,7 +65,7 @@ public class MainActivity2 extends AppCompatActivity {
                 editor.putInt("wd" ,Integer.parseInt(working_days.getText().toString()));
                 editor.putInt("s" ,Integer.parseInt(no_of_Sub.getText().toString()));
                 editor.commit();
-                Intent next_intent =  new Intent(MainActivity2.this , MainActivity3.class);
+                Intent next_intent =  new Intent(num_inputs.this , sub_name.class);
                 startActivity(next_intent);
             }
         });

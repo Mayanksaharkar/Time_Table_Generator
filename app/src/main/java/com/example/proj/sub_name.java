@@ -7,14 +7,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TableLayout;
@@ -26,12 +24,10 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 
 
-public class MainActivity3 extends AppCompatActivity {
+public class sub_name extends AppCompatActivity {
    public TableLayout tableLayout;
     LinearLayout layoutRow;
     private LinearLayout layoutRowContainer;
@@ -44,7 +40,7 @@ public class MainActivity3 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main3);
+        setContentView(R.layout.activity_sub_name);
 
         layoutRowContainer = findViewById(R.id.layout_row_container);
 
@@ -67,7 +63,7 @@ public class MainActivity3 extends AppCompatActivity {
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {public void onClick(View v) {
 
-            new AlertDialog.Builder(MainActivity3.this)
+            new AlertDialog.Builder(sub_name.this)
                     .setTitle("Confirm Submission")
                     .setMessage("Are you sure you want to submit?")
                     .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -92,7 +88,7 @@ public class MainActivity3 extends AppCompatActivity {
                                 String editTextValue = rowValues.getEditTextValue();
                                 String spinnerValue = rowValues.getSpinnerValue();
 
-                                TextView editTextTextView = new TextView(MainActivity3.this);
+                                TextView editTextTextView = new TextView(sub_name.this);
                                 editTextTextView.setText(editTextValue);
 
                                 TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, // Width
@@ -104,12 +100,12 @@ public class MainActivity3 extends AppCompatActivity {
                                 editTextTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                                 editTextTextView.setTextColor(Color.WHITE);
 
-                                TextView spinnerTextView = new TextView(MainActivity3.this);
+                                TextView spinnerTextView = new TextView(sub_name.this);
                                 spinnerTextView.setLayoutParams(layoutParams2);
                                 spinnerTextView.setText(spinnerValue);
                                 spinnerTextView.setTextColor(Color.WHITE);
 
-                                TableRow tableRow = new TableRow(MainActivity3.this);
+                                TableRow tableRow = new TableRow(sub_name.this);
                                 spinnerTextView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                                 spinnerTextView.setText(spinnerValue);
                                 tableRow.addView(editTextTextView);
@@ -146,7 +142,7 @@ public class MainActivity3 extends AppCompatActivity {
                             TextView cell = (TextView) row.getChildAt(1);
                             countList_array[i] = Integer.parseInt(cell.getText().toString());
                         }
-                        Intent intent_to_Activity4 =  new Intent(MainActivity3.this,MainActivity4.class);
+                        Intent intent_to_Activity4 =  new Intent(sub_name.this, timeTable.class);
                         intent_to_Activity4.putExtra("lectnum_array" , countList_array);
                         intent_to_Activity4.putExtra("subname_array" , subList_array);
 
@@ -168,15 +164,15 @@ public class MainActivity3 extends AppCompatActivity {
 
         // Create a new EditText
         EditText editText = new EditText(this);
-        editText.setBackground(ContextCompat.getDrawable(MainActivity3.this, R.drawable.edit_text_border));
+        editText.setBackground(ContextCompat.getDrawable(sub_name.this, R.drawable.edit_text_border));
         editText.setHint("Subject Name");
         TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT , ViewGroup.LayoutParams.MATCH_PARENT);
         editText.setLayoutParams(new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.MATCH_PARENT
         ));
-        editText.setHintTextColor(ContextCompat.getColor(MainActivity3.this, R.color.white));
-        editText.setTextColor(ContextCompat.getColor(MainActivity3.this, R.color.white));
+        editText.setHintTextColor(ContextCompat.getColor(sub_name.this, R.color.white));
+        editText.setTextColor(ContextCompat.getColor(sub_name.this, R.color.white));
 
         editText.setLayoutParams(new LinearLayout.LayoutParams(
                 0,
@@ -187,7 +183,7 @@ public class MainActivity3 extends AppCompatActivity {
 
         // Create a new Spinner
         Spinner spinner = new Spinner(this);
-        spinner.setBackground(ContextCompat.getDrawable(MainActivity3.this, R.drawable.edit_text_border));
+        spinner.setBackground(ContextCompat.getDrawable(sub_name.this, R.drawable.edit_text_border));
         /* spinner.setMinimumHeight(50);*/
 
         ViewGroup.LayoutParams params = spinner.getLayoutParams();
@@ -198,7 +194,7 @@ public class MainActivity3 extends AppCompatActivity {
         ));
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-                MainActivity3.this,
+                sub_name.this,
                 R.array.spinner_values,
                 android.R.layout.simple_spinner_item
         );

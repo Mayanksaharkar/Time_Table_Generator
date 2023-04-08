@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">proj</string>
     <string name="spinner_values" />
+    <string name="subjects">Subjects</string>
+    <string name="days">Days</string>
+    <string name="generate_pdf">Generate PDF</string>
 
     <string-array name="spinner_values">
         <item>0</item>
