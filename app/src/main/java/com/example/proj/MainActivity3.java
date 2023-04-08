@@ -196,6 +196,7 @@ public class MainActivity3 extends AppCompatActivity {
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 1f
         ));
+
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
                 MainActivity3.this,
                 R.array.spinner_values,

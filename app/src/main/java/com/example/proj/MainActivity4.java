@@ -14,6 +14,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.graphics.pdf.PdfDocument;
 import android.os.Build;
 import android.os.Bundle;
@@ -29,6 +30,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -49,6 +51,7 @@ public class MainActivity4 extends AppCompatActivity {
     int pageHeight = 1120;
     int pagewidth = 792;
     Bitmap bmp, scaledbmp;
+    ConstraintLayout layout ;
     private static final int PERMISSION_REQUEST_CODE = 200;
 
     @SuppressLint("MissingInflatedId")
@@ -57,13 +60,15 @@ public class MainActivity4 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main4);
 
+
+
+        Drawable drawable = getDrawable(R.drawable.edit_text_border);
         Intent intent = getIntent();
         TableLayout tableLayout = findViewById(R.id.gridlay);
 
         SharedPreferences preferences_from_main = getSharedPreferences("Main", Context.MODE_PRIVATE);
         SharedPreferences preferences_from_main2 = getSharedPreferences("Main2", Context.MODE_PRIVATE);
         SharedPreferences preferences_from_main3 = getSharedPreferences("Main3", Context.MODE_PRIVATE);
-        Toast.makeText(this, "" + preferences_from_main.getString("className", null), Toast.LENGTH_LONG).show();
 
         TextView classname= findViewById(R.id.className);
         classname.setText(preferences_from_main.getString("className","class name" ));
@@ -72,9 +77,12 @@ public class MainActivity4 extends AppCompatActivity {
         int numWorkingDays =preferences_from_main2.getInt("wd", 5);
         int numSlotsPerDay =  preferences_from_main2.getInt("l", 5);
 
+        int[] NUMLECT ={5,5,5,5,5};
+        String[] SUBLIST = {"Network and information security.  ","Wireless mobile application. ", "Management ", "Emerging dreams. " ," Mobile application developer. "};
 
-        int[] NUMLECT =intent.getIntArrayExtra("lectnum_array");
-        String[] SUBLIST = intent.getStringArrayExtra("subname_array");
+
+        /*int[] NUMLECT =intent.getIntArrayExtra("lectnum_array");
+        String[] SUBLIST = intent.getStringArrayExtra("subname_array");*/
         String[] day_arr = new String[]{"Monday" , "Tuesday" , "Wednesday" , "Thursday" , "Friday" , "Saturday" , "Sunday"};
 
         for (int i = 0 ; i <SUBLIST.length ; i++){
@@ -91,6 +99,8 @@ public class MainActivity4 extends AppCompatActivity {
         }
 
 // Assign slots for each subject
+
+
         Random random = new Random();
         for (int i = 0; i < numSubjects; i++) {
             String sub = SUBLIST[i];
@@ -105,12 +115,29 @@ public class MainActivity4 extends AppCompatActivity {
                 timetable[day][slot] = sub;
             }
         }
+
+        String prevVal = SUBLIST[0]; // keep track of previously assigned value
+        for (int i = 0; i < timetable.length; i++) {
+            for (int j = 0; j < timetable[i].length; j++) {
+                // shuffle array until current value is not the same as previous one
+                do {
+                    // use Fisher-Yates shuffle to shuffle array
+                    int row = random.nextInt(timetable.length);
+                    int col = random.nextInt(timetable[row].length);
+                    String temp = timetable[i][j];
+                    timetable[i][j] = timetable[row][col];
+                    timetable[row][col] = temp;
+                } while (timetable[i][j].equals(prevVal));
+                prevVal = timetable[i][j]; // update previously assigned value
+            }
+        }
         TableLayout timetableTable = findViewById(R.id.timetable_table);
         for (int i = 0; i < numWorkingDays; i++) {
             TableRow row = new TableRow(this);
             row.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
 
             TextView dayView = new TextView(this);
+
 
             dayView.setText(day_arr[i]);
             dayView.setAllCaps(false);
@@ -131,8 +158,8 @@ public class MainActivity4 extends AppCompatActivity {
             timetableTable.addView(row);
         }
 
-        /*AppCompatButton pdf_button = findViewById(R.id.pdf_button);
-        bmp = BitmapFactory.decodeResource(getResources(), R.drawable.bg_create_new_activity);
+        AppCompatButton pdf_button = findViewById(R.id.pdf_button);
+        bmp = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
         scaledbmp = Bitmap.createScaledBitmap(bmp, 140, 140, false);
 
         if (checkPermission()) {
@@ -145,10 +172,16 @@ public class MainActivity4 extends AppCompatActivity {
             public void onClick(View v) {
                 generatePDF();
             }
-        });*/
+        });
 
     }
-    /*private void generatePDF(){
+    @SuppressLint("WrongViewCast")
+    private void generatePDF(){
+        layout = findViewById(R.id.layout);
+
+        bmp = LoadBitmap(layout , layout.getWidth() ,layout.getHeight());
+
+
         PdfDocument pdfDocument = new PdfDocument();
 
         Paint paint = new Paint();
@@ -161,35 +194,31 @@ public class MainActivity4 extends AppCompatActivity {
         title.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
         title.setTextSize(15);
         title.setColor(ContextCompat.getColor(this, R.color.purple_200));
-        canvas.drawText("A portal for IT professionals.", 209, 100, title);
-        canvas.drawText("Geeks for Geeks", 209, 80, title);
+        canvas.drawText("Hello", 209, 100, title);
+        canvas.drawText("Time Table Generator", 209, 80, title);
         title.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
         title.setColor(ContextCompat.getColor(this, R.color.purple_200));
         title.setTextSize(15);
 
         title.setTextAlign(Paint.Align.CENTER);
-        canvas.drawText("This is sample document which we have created.", 396, 560, title);
+        canvas.drawText(" Automated TimeTable Generator", 396, 560, title);
         pdfDocument.finishPage(myPage);
-        File file = new File(Environment.getExternalStorageDirectory(), "GFG.pdf");
+        File file = new File(Environment.getExternalStorageDirectory(), "timetable.pdf");
         try {
-            // after creating a file name we will
-            // write our PDF file to that location.
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 pdfDocument.writeTo(Files.newOutputStream(file.toPath()));
             }
-
-            // below line is to print toast message
-            // on completion of PDF generation.
             Toast.makeText(MainActivity4.this, "PDF file generated successfully.", Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
-            // below line is used
-            // to handle error
             e.printStackTrace();
         }
-        // after storing our pdf to that
-        // location we are closing our PDF file.
         pdfDocument.close();
 
+    }
+
+    private Bitmap LoadBitmap(View v, int maxWidth, int maxHeight) {
+        Bitmap bitmap = Bitmap.createBitmap(layout.getWidth(),layout.getHeight(), Bitmap.Config.ARGB_8888);
+        return bitmap;
     }
 
     private boolean checkPermission() {
@@ -200,17 +229,14 @@ public class MainActivity4 extends AppCompatActivity {
     }
 
     private void requestPermission() {
-        // requesting permissions if not provided.
         ActivityCompat.requestPermissions(this, new String[]{WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
     }
 
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == PERMISSION_REQUEST_CODE) {
-            if (grantResults.length > 0) {
-
-                // after requesting permissions we are showing
-                // users a toast message of permission granted.
+            if (grantResults.length > 0)
+            {
                 boolean writeStorage = grantResults[0] == PackageManager.PERMISSION_GRANTED;
                 boolean readStorage = grantResults[1] == PackageManager.PERMISSION_GRANTED;
 
@@ -222,7 +248,7 @@ public class MainActivity4 extends AppCompatActivity {
                 }
             }
         }
-    }*/
+    }
 
 }
 

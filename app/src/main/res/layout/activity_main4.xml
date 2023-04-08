@@ -1,10 +1,11 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 android:background="@color/white"
-    android:orientation="horizontal"
+    android:orientation="vertical"
+    android:id="@+id/layout"
     >
 
 
@@ -14,13 +15,10 @@ android:background="@color/white"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
         android:text=""
-android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:textAllCaps="true"
         android:textSize="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints"
+       android:layout_gravity="center"
         android:fontFamily="@font/barlow"
         android:textStyle="bold"/>
 
@@ -56,7 +54,9 @@ android:layout_marginTop="30dp"
                 android:textStyle="bold"/>
         </TableRow>
     </TableLayout>
-
+<HorizontalScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
     <TableLayout
         android:id="@+id/timetable_table"
         android:layout_width="match_parent"
@@ -69,22 +69,24 @@ android:layout_marginTop="30dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tableLayout2"
         />
+</HorizontalScrollView>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/pdf_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:background="@drawable/white_btn"
         android:padding="20dp"
         android:text="Generate PDF"
-        android:textColor="@color/pink"
+        android:textColor="@color/white"
         android:textStyle="bold"
+        android:layout_marginTop="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/timetable_table"
-        app:layout_constraintVertical_bias="0.114"
-        android:visibility="invisible"/>
+        app:layout_constraintVertical_bias="0.114" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

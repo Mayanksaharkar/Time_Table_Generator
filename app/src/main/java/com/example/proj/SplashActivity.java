@@ -12,10 +12,10 @@ public class SplashActivity extends AppCompatActivity {
     private VideoView mVideoView;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-
         mVideoView = findViewById(R.id.videoView);
         mVideoView.setVideoPath("android.resource://" + getPackageName() + "/" + R.raw.splash_screen);
         mVideoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
@@ -24,12 +24,9 @@ public class SplashActivity extends AppCompatActivity {
                 startNextActivity(); // start the next activity when the video finishes
             }
         });
-
         mVideoView.setMediaController(null);
-
         mVideoView.start();
     }
-
     private void startNextActivity() {
         Intent intent = new Intent(this, create_Activity.class);
         startActivity(intent);
