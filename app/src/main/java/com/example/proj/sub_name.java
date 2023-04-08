@@ -171,6 +171,7 @@ public class sub_name extends AppCompatActivity {
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.MATCH_PARENT
         ));
+        editText.setPadding(5,0,0,0);
         editText.setHintTextColor(ContextCompat.getColor(sub_name.this, R.color.white));
         editText.setTextColor(ContextCompat.getColor(sub_name.this, R.color.white));
 

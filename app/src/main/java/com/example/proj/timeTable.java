@@ -51,7 +51,7 @@ public class timeTable extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.time_table);
+        setContentView(R.layout.activity_time_table);
 
 
 
