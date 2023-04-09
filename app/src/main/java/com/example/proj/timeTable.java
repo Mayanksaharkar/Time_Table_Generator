@@ -4,6 +4,7 @@ import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
 import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 import android.annotation.SuppressLint;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -16,12 +17,16 @@ import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.graphics.pdf.PdfDocument;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -35,6 +40,8 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Arrays;
@@ -43,8 +50,8 @@ import java.util.Random;
 public class timeTable extends AppCompatActivity {
     int pageHeight = 1120;
     int pagewidth = 792;
-    Bitmap bmp, scaledbmp;
-    ConstraintLayout layout ;
+    Bitmap bitmap, scaledbmp;
+    LinearLayout linear ;
     private static final int PERMISSION_REQUEST_CODE = 200;
 
     @SuppressLint("MissingInflatedId")
@@ -70,12 +77,12 @@ public class timeTable extends AppCompatActivity {
         int numWorkingDays =preferences_from_main2.getInt("wd", 5);
         int numSlotsPerDay =  preferences_from_main2.getInt("l", 5);
 
-        int[] NUMLECT ={5,5,5,5,5};
+        /*int[] NUMLECT ={5,5,5,5,5};
         String[] SUBLIST = {"Network and information security.  ","Wireless mobile application. ", "Management ", "Emerging dreams. " ," Mobile application developer. "};
+*/
 
-
-        /*int[] NUMLECT =intent.getIntArrayExtra("lectnum_array");
-        String[] SUBLIST = intent.getStringArrayExtra("subname_array");*/
+        int[] NUMLECT =intent.getIntArrayExtra("lectnum_array");
+        String[] SUBLIST = intent.getStringArrayExtra("subname_array");
         String[] day_arr = new String[]{"Monday" , "Tuesday" , "Wednesday" , "Thursday" , "Friday" , "Saturday" , "Sunday"};
 
         for (int i = 0 ; i <SUBLIST.length ; i++){
@@ -152,25 +159,69 @@ public class timeTable extends AppCompatActivity {
         }
 
         AppCompatButton pdf_button = findViewById(R.id.pdf_button);
-        bmp = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
-        scaledbmp = Bitmap.createScaledBitmap(bmp, 140, 140, false);
+/*
 
         if (checkPermission()) {
             Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show();
         } else {
             requestPermission();
-        }
+        }*/
         pdf_button.setOnClickListener(new View.OnClickListener() {
+
+
             @Override
             public void onClick(View v) {
+                bitmap = LoadBitmap(v,50,50);
                 generatePDF();
+            }
+
+            private Bitmap LoadBitmap(View v, int width, int height) {
+                Bitmap bitmap = Bitmap.createBitmap(width,height, Bitmap.Config.ARGB_8888);
+                Canvas canvas = new Canvas(bitmap);
+                v.draw(canvas);
+                return bitmap;
             }
         });
 
     }
     @SuppressLint("WrongViewCast")
-    private void generatePDF(){
-        layout = findViewById(R.id.layout);
+    private void generatePDF()
+    {
+
+        WindowManager windowManager = (WindowManager) getSystemService(Context.WINDOW_SERVICE);
+        DisplayMetrics displayMetrics =new DisplayMetrics();
+        this.getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        float width = displayMetrics.widthPixels;
+        float height = displayMetrics.heightPixels;
+        int convertWidth = (int)width,convertHeight=(int)height;
+
+        PdfDocument document=new PdfDocument();
+        PdfDocument.PageInfo pageInfo=new PdfDocument.PageInfo.Builder(convertWidth,convertHeight,1).create();
+        PdfDocument.Page page = document.startPage(pageInfo);
+        Canvas canvas= page.getCanvas();
+        Paint paint = new Paint();
+        canvas.drawPaint(paint);
+        bitmap = Bitmap.createScaledBitmap(bitmap,convertWidth,convertHeight,true);
+        canvas.drawBitmap(bitmap , 0,0,null );
+        document.finishPage(page);
+
+        String targetPdf = "/sdcard/page.pdf";
+        File file;
+        file =  new File(targetPdf);
+        try {
+            document.writeTo(new FileOutputStream(file));
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(this, "something went Wrong!", Toast.LENGTH_SHORT).show();
+            document.close();
+            Toast.makeText(this, "Success!", Toast.LENGTH_SHORT).show();
+            openPdf();
+        }
+
+
+        /*layout = findViewById(R.id.layout);
 
         bmp = LoadBitmap(layout , layout.getWidth() ,layout.getHeight());
 
@@ -240,7 +291,23 @@ public class timeTable extends AppCompatActivity {
                     finish();
                 }
             }
-        }
+        }*/
+    }
+
+    private void openPdf() {
+ File file = new File("/sdcard/page.pdf");
+ if (file.exists()){
+     Intent intent = new Intent(Intent.ACTION_VIEW);
+     Uri uri = Uri.fromFile(file);
+     intent.setDataAndType(uri,"application.pdf");
+     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+     try {
+         startActivity(intent);
+     }catch (ActivityNotFoundException e){
+         Toast.makeText(this, "No application for Pdf", Toast.LENGTH_SHORT).show();
+         e.printStackTrace();
+     }
+ }
     }
 
 }

@@ -28,7 +28,7 @@ public class num_inputs extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_num_inputs);
         lect_in_a_day = findViewById(R.id.lect_in_a_day);
-        working_days = findViewById(R.id.wroking_days);
+        working_days = findViewById(R.id.working_days);
         no_of_Sub = findViewById(R.id.no_of_sub);
         btn =(AppCompatButton)findViewById(R.id.btn_next);
 

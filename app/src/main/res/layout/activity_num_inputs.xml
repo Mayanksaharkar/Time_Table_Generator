@@ -12,9 +12,13 @@
         android:id="@+id/imageView3"
         android:layout_width="70dp"
         android:layout_height="62dp"
-        app:srcCompat="@drawable/ic_launcher"
-        tools:layout_editor_absoluteX="3dp"
-        tools:layout_editor_absoluteY="1dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.006"
+        app:srcCompat="@drawable/ic_launcher" />
 
     <EditText
         android:id="@+id/lect_in_a_day"
@@ -23,16 +27,18 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:background="@drawable/edit_text_border"
-        android:hint=""
+
         android:inputType="number"
-        android:paddingLeft="15dp"
+        android:paddingStart="15dp"
         android:textColor="@color/blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.888"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.422" />
+        app:layout_constraintVertical_bias="0.422"
+        tools:ignore="Autofill"
+        />
 
     <TextView
         android:id="@+id/my_text_view2"
@@ -51,7 +57,7 @@
         app:layout_constraintVertical_bias="0.426" />
 
     <EditText
-        android:id="@+id/wroking_days"
+        android:id="@+id/working_days"
         android:layout_width="70dp"
         android:layout_height="50dp"
         android:layout_alignParentTop="true"
@@ -66,7 +72,8 @@
         app:layout_constraintHorizontal_bias="0.888"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.317" />
+        app:layout_constraintVertical_bias="0.317"
+        />
 
     <TextView
         android:id="@+id/my_text_view"
