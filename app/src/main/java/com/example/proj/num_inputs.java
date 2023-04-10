@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -12,6 +13,7 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.core.content.ContextCompat;
 
 public class num_inputs extends AppCompatActivity {
 
@@ -32,6 +34,9 @@ public class num_inputs extends AppCompatActivity {
         no_of_Sub = findViewById(R.id.no_of_sub);
         btn =(AppCompatButton)findViewById(R.id.btn_next);
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.offwhite));
+        }
 
         TextWatcher textWatcher = new TextWatcher() {
             @Override

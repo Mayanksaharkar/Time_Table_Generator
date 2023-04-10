@@ -4,21 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg"
+    android:background="@drawable/bgg"
     tools:context=".num_inputs">
 
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="70dp"
-        android:layout_height="62dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.006"
-        app:srcCompat="@drawable/ic_launcher" />
 
     <EditText
         android:id="@+id/lect_in_a_day"
@@ -26,11 +14,11 @@
         android:layout_height="50dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:background="@drawable/edit_text_border"
+        android:background="@drawable/edit_text_border_for_num_inputs"
 
         android:inputType="number"
         android:paddingStart="15dp"
-        android:textColor="@color/blue"
+        android:textColor="@color/offwhite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.888"
@@ -47,6 +35,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="28dp"
+        android:fontFamily="@font/mukta"
         android:text="No. of lecture in a day"
         android:textColor="@color/white"
         android:textSize="22sp"
@@ -62,11 +51,11 @@
         android:layout_height="50dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:background="@drawable/edit_text_border"
+        android:background="@drawable/edit_text_border_for_num_inputs"
         android:hint=""
         android:inputType="number"
         android:paddingLeft="15dp"
-        android:textColor="@color/blue"
+        android:textColor="@color/offwhite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.888"
@@ -82,6 +71,7 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="28dp"
+        android:fontFamily="@font/mukta"
         android:text="Working days in a week"
         android:textColor="@color/white"
         android:textSize="22sp"
@@ -98,10 +88,10 @@
         android:layout_height="50dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:background="@drawable/edit_text_border"
+        android:background="@drawable/edit_text_border_for_num_inputs"
         android:hint=""
         android:paddingLeft="15dp"
-        android:textColor="@color/blue"
+        android:textColor="@color/offwhite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.888"
@@ -116,8 +106,9 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="28dp"
-        android:text="Number of Subjects"
+        android:fontFamily="@font/mukta"
 
+        android:text="Number of Subjects"
         android:textColor="@color/white"
         android:textSize="22sp"
         android:textStyle="bold"
@@ -128,19 +119,20 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_next"
-        android:layout_width="113dp"
-        android:layout_height="56dp"
-        android:background="@drawable/button_next"
+        android:layout_width="167dp"
+        android:layout_height="58dp"
+        android:background="@drawable/button_next_for_num_input"
         android:enabled="false"
         android:text="next"
-        android:textColor="@color/white"
-        android:textSize="14sp"
+        android:textColor="@color/green"
+        android:textSize="15sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.916"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.68" />
+        app:layout_constraintVertical_bias="0.694" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

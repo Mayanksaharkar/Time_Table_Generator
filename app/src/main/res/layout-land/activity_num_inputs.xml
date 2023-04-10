@@ -9,16 +9,6 @@
     tools:context=".num_inputs">
 
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="70dp"
-        android:layout_height="62dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_launcher" />
-
     <EditText
         android:id="@+id/lect_in_a_day"
         android:layout_width="70dp"
@@ -29,7 +19,7 @@
         android:hint=""
         android:inputType="number"
         android:paddingLeft="15dp"
-        android:textColor="@color/blue"
+        android:textColor="@color/green"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.889"
@@ -45,7 +35,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="28dp"
         android:text="No. of lecture in a day"
-        android:textColor="@color/white"
+        android:textColor="@color/green"
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -63,7 +53,7 @@
         android:hint=""
         android:inputType="number"
         android:paddingLeft="15dp"
-        android:textColor="@color/blue"
+        android:textColor="@color/green"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.888"
@@ -79,7 +69,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="28dp"
         android:text="Working days in a week"
-        android:textColor="@color/white"
+        android:textColor="@color/green"
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -97,7 +87,7 @@
         android:hint=""
         android:inputType="number"
         android:paddingLeft="15dp"
-        android:textColor="@color/blue"
+        android:textColor="@color/green"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.889"
@@ -114,7 +104,7 @@
         android:layout_marginStart="28dp"
         android:text="Number of Subjects"
 
-        android:textColor="@color/white"
+        android:textColor="@color/green"
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -129,7 +119,7 @@
         android:background="@drawable/button_next"
         android:enabled="false"
         android:text="next"
-        android:textColor="@color/white"
+        android:textColor="@color/offwhite"
         android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

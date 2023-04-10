@@ -20,20 +20,21 @@
             android:exported="false" />
         <activity
             android:name=".SplashActivity"
-            android:exported="false">
-
-
-        </activity>
-        <activity android:name=".classNameActivity" />
-        <activity android:name=".timeTable"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            </activity>
+
+        </activity>
+        <activity android:name=".classNameActivity" />
+        <activity
+            android:name=".timeTable"
+            android:exported="false">
+
+
+        </activity>
         <activity android:name=".num_inputs" />
         <activity android:name=".sub_name" />
     </application>

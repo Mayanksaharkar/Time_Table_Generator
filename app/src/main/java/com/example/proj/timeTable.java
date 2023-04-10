@@ -144,11 +144,12 @@ public class timeTable extends AppCompatActivity {
             dayView.setTextColor(Color.BLACK);
             dayView.setGravity(Gravity.CENTER_HORIZONTAL);
             dayView.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
+            dayView.setTextColor(getResources().getColor(R.color.green));
             row.addView(dayView);
             for (int j = 0; j < numSlotsPerDay; j++) {
                 TextView subjectView = new TextView(this);
                 subjectView.setText(timetable[i][j]);
-                subjectView.setTextColor(Color.BLACK);
+                subjectView.setTextColor(getResources().getColor(R.color.green));
                 subjectView.setGravity(Gravity.CENTER_HORIZONTAL);
                 subjectView.setPadding(5,10,5,10);
                 subjectView.setAllCaps(true);

@@ -74,6 +74,7 @@ String className;
                 Intent intent = new Intent(classNameActivity.this , num_inputs.class);
 
                 startActivity(intent);
+                overridePendingTransition(R.xml.slide_up_enter, R.xml.slide_up_exit);
             }
         });
 

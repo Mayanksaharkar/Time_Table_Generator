@@ -3,9 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-android:background="@color/white"
+android:background="@drawable/bg3"
     android:orientation="vertical"
     android:id="@+id/layout"
+
     >
 
 
@@ -13,9 +14,9 @@ android:background="@color/white"
         android:id="@+id/className"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
+        android:textColor="@color/offwhite"
         android:text=""
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:textAllCaps="true"
         android:textSize="25sp"
        android:layout_gravity="center"
@@ -28,7 +29,7 @@ android:background="@color/white"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/className"
         tools:ignore="MissingConstraints"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="40dp"
         >
 
         <TableRow tools:ignore="UselessParent">
@@ -38,7 +39,7 @@ android:background="@color/white"
                 android:layout_weight="1"
                 android:text="@string/days"
                 android:textSize="20sp"
-                android:textColor="@color/black"
+                android:textColor="@color/green"
 
                 android:fontFamily="@font/oswald"
                 android:textStyle="bold"/>
@@ -49,7 +50,7 @@ android:background="@color/white"
                 android:textAlignment="center"
                 android:textSize="20sp"
                 android:fontFamily="@font/oswald"
-                android:textColor="@color/black"
+                android:textColor="@color/green"
 
                 android:textStyle="bold"/>
         </TableRow>
@@ -76,11 +77,11 @@ android:background="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@drawable/white_btn"
+        android:background="@drawable/button_next"
         android:padding="20dp"
         android:text="@string/generate_pdf"
         android:visibility="invisible"
-        android:textColor="@color/white"
+        android:textColor="@color/offwhite"
         android:textStyle="bold"
         android:layout_marginTop="20dp"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/bg3"
     android:orientation="horizontal"
     >
 
@@ -15,9 +15,9 @@
         android:fontFamily="@font/barlow"
         android:text=""
         android:textAllCaps="true"
-        android:textSize="25sp"
+        android:textSize="20sp"
         android:textStyle="bold"
-        android:textColor="@color/black"
+        android:textColor="@color/offwhite"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -28,7 +28,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/className"
-        tools:ignore="MissingConstraints">
+        tools:ignore="MissingConstraints"
+        android:layout_marginTop="12dp">
 
         <TableRow tools:ignore="UselessParent">
 
@@ -37,7 +38,7 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/oswald"
                 android:text="@string/days"
-                android:textColor="@color/black"
+                android:textColor="@color/green"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 />
@@ -47,7 +48,7 @@
                 android:fontFamily="@font/oswald"
                 android:text="@string/subjects"
                 android:textAlignment="center"
-                android:textColor="@color/black"
+                android:textColor="@color/green"
                 android:textSize="20sp"
                 android:textStyle="bold" />
         </TableRow>
@@ -72,18 +73,4 @@
             app:layout_constraintTop_toBottomOf="@+id/tableLayout2" />
     </HorizontalScrollView>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/pdf_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/white_btn"
-        android:padding="20dp"
-        android:text="@string/generate_pdf"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.499"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

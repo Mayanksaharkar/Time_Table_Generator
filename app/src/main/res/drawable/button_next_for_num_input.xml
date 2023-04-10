@@ -2,7 +2,7 @@
     <!-- Gray shadow. -->
     <item android:left="7dp" android:top="10dp">
         <shape>
-            <gradient android:startColor="#2A44D996" android:endColor="#2A44D996"/>
+            <gradient android:startColor="#39F1EFDF" android:endColor="#39F1EFDF"/>
             <corners android:radius="8dp" />
 
         </shape>
@@ -10,8 +10,8 @@
     <!-- White foreground. -->
     <item android:bottom="5dp" android:right="3dp">
         <shape>
-            <gradient android:startColor="@color/green" android:endColor="@color/green"/>
-<stroke android:color="@color/offwhite" android:width="2sp"/>
+            <gradient android:startColor="@color/offwhite" android:endColor="@color/offwhite"/>
+            <stroke android:color="@color/green" android:width="2sp"/>
             <corners android:radius="8dp" />
         </shape>
     </item>

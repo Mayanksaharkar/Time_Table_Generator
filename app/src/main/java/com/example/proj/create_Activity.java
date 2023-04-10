@@ -22,7 +22,7 @@ public class create_Activity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent_to_className_Activity = new Intent(create_Activity.this , classNameActivity.class);
                 startActivity(intent_to_className_Activity);
-                overridePendingTransition(R.xml.slide_up_enter, R.xml.slide_up_exit);
+                overridePendingTransition(R.xml.slide_in_right, R.xml.slide_out_left);
             }
         });
     }
