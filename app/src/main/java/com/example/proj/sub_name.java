@@ -69,6 +69,56 @@ public class sub_name extends AppCompatActivity {
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+                // Iterate through all rows and check if all EditTexts are empty
+                boolean allEditTextEmpty = true;
+                for (int i = 0; i < layoutRowContainer.getChildCount(); i++) {
+                    View view = layoutRowContainer.getChildAt(i);
+                    if (view instanceof LinearLayout) {
+                        LinearLayout layoutRow = (LinearLayout) view;
+                        for (int j = 0; j < layoutRow.getChildCount(); j++) {
+                            View childView = layoutRow.getChildAt(j);
+                            if (childView instanceof EditText) {
+                                EditText editText = (EditText) childView;
+                                if (!editText.getText().toString().trim().isEmpty()) {
+                                    allEditTextEmpty = false;
+                                    break;
+                                }
+                            }
+                        }
+                        if (!allEditTextEmpty) {
+                            break;
+                        }
+                    }
+                }
+
+                // Check if the value of any spinner is 1
+                boolean spinnerValueOne = false;
+                for (int i = 0; i < layoutRowContainer.getChildCount(); i++) {
+                    View view = layoutRowContainer.getChildAt(i);
+                    if (view instanceof LinearLayout) {
+                        LinearLayout layoutRow = (LinearLayout) view;
+                        for (int j = 0; j < layoutRow.getChildCount(); j++) {
+                            View childView = layoutRow.getChildAt(j);
+                            if (childView instanceof Spinner) {
+                                Spinner spinner = (Spinner) childView;
+                                if (spinner.getSelectedItemPosition() == 0) {
+                                    spinnerValueOne = true;
+                                    break;
+                                }
+                            }
+                        }
+                        if (spinnerValueOne) {
+                            break;
+                        }
+                    }
+                }
+
+                // Display toast message if all EditTexts are empty or if any spinner value is 1
+                if (allEditTextEmpty || spinnerValueOne) {
+                    String message = "Please enter values for all fields and make sure none of the spinners has a value of 0";
+                    Toast.makeText(sub_name.this, message, Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 new AlertDialog.Builder(sub_name.this)
                         .setTitle("Confirm Submission")
@@ -138,6 +188,7 @@ public class sub_name extends AppCompatActivity {
         generate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 for (int i = 0; i < rowCount; i++) {
                     TableRow row = (TableRow) tableLayout.getChildAt(i);
                     TextView cell = (TextView) row.getChildAt(0);

@@ -122,7 +122,7 @@
         android:layout_width="167dp"
         android:layout_height="58dp"
         android:background="@drawable/button_next_for_num_input"
-        android:enabled="false"
+        android:enabled="true"
         android:text="next"
         android:textColor="@color/green"
         android:textSize="15sp"

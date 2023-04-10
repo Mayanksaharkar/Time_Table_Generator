@@ -4,6 +4,8 @@
     <string name="subjects">Subjects</string>
     <string name="days">Days</string>
     <string name="generate_pdf">Generate PDF</string>
+    <string name="recreate">Recreate</string>
+    <string name="regenerate">regenerate</string>
 
     <string-array name="spinner_values">
         <item>0</item>

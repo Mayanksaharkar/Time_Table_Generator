@@ -37,7 +37,7 @@ public class SplashActivity extends AppCompatActivity {
                     window.setStatusBarColor(ContextCompat.getColor(SplashActivity.this, R.color.offwhite));
                 }
             }
-        }, 5500); // 5000 ms delay
+        }, 5900); // 5000 ms delay
 
         mVideoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override

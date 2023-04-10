@@ -73,4 +73,22 @@
             app:layout_constraintTop_toBottomOf="@+id/tableLayout2" />
     </HorizontalScrollView>
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/reGenerete"
+        android:layout_width="143dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/button_next"
+        android:padding="20dp"
+        android:text="@string/regenerate"
+        android:textColor="@color/offwhite"
+        android:textStyle="bold"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView"
+        app:layout_constraintVertical_bias="0.114" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

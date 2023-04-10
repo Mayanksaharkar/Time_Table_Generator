@@ -10,6 +10,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
@@ -38,40 +39,29 @@ public class num_inputs extends AppCompatActivity {
             getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.offwhite));
         }
 
-        TextWatcher textWatcher = new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                // Not used
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // Enable or disable the button based on the EditTexts' contents
-                boolean enabled = !lect_in_a_day.getText().toString().trim().isEmpty()
-                        && !working_days.getText().toString().trim().isEmpty() && !no_of_Sub.getText().toString().trim().isEmpty() ;
-                btn.setEnabled(enabled);
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                // Not used
-            }
-        };
-        lect_in_a_day.addTextChangedListener(textWatcher);
-        working_days.addTextChangedListener(textWatcher);
-        no_of_Sub.addTextChangedListener(textWatcher);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                SharedPreferences sharedPreferences = getSharedPreferences("Main2", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putInt("l" ,Integer.parseInt(lect_in_a_day.getText().toString()));
-                editor.putInt("wd" ,Integer.parseInt(working_days.getText().toString()));
-                editor.putInt("s" ,Integer.parseInt(no_of_Sub.getText().toString()));
-                editor.commit();
-                Intent next_intent =  new Intent(num_inputs.this , sub_name.class);
-                startActivity(next_intent);
+                if (lect_in_a_day.getText().toString().isEmpty() && working_days.getText().toString().isEmpty() && no_of_Sub.getText().toString().isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Please enter Details", Toast.LENGTH_SHORT).show();
+                } else if (lect_in_a_day.getText().toString().isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Please enter # of lecture in a day ", Toast.LENGTH_SHORT).show();
+                } else if (working_days.getText().toString().isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Please enter # of working days", Toast.LENGTH_SHORT).show();
+                }else if (Integer.parseInt(working_days.getText().toString())>= 7) {
+                    Toast.makeText(getApplicationContext(), "working days must be less than or equal 7", Toast.LENGTH_SHORT).show();
+                }else if (no_of_Sub.getText().toString().isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Please enter # of subjects", Toast.LENGTH_SHORT).show();
+                } else {
+                    SharedPreferences sharedPreferences = getSharedPreferences("Main2", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putInt("l", Integer.parseInt(lect_in_a_day.getText().toString()));
+                    editor.putInt("wd", Integer.parseInt(working_days.getText().toString()));
+                    editor.putInt("s", Integer.parseInt(no_of_Sub.getText().toString()));
+                    editor.commit();
+                    Intent next_intent = new Intent(num_inputs.this, sub_name.class);
+                    startActivity(next_intent);
+                }
             }
         });
 

@@ -2,7 +2,7 @@
     <!-- Gray shadow. -->
     <item android:left="7dp" android:top="10dp">
         <shape>
-            <gradient android:startColor="#2A44D996" android:endColor="#2A44D996"/>
+            <gradient android:startColor="#4B44D996" android:endColor="#4B44D996"/>
             <corners android:radius="8dp" />
 
         </shape>
