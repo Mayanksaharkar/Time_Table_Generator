@@ -73,6 +73,103 @@ public class timeTable extends AppCompatActivity {
         Intent intent = getIntent();
         TableLayout tableLayout = findViewById(R.id.gridlay);
         AppCompatButton regenerateBtn = findViewById(R.id.reGenerete);
+        SharedPreferences preferences_from_main = getSharedPreferences("Main", Context.MODE_PRIVATE);
+        SharedPreferences preferences_from_main2 = getSharedPreferences("Main2", Context.MODE_PRIVATE);
+        SharedPreferences preferences_from_main3 = getSharedPreferences("Main3", Context.MODE_PRIVATE);
+
+        TextView classname = findViewById(R.id.className);
+        TextView clgname = findViewById(R.id.collegeName);
+        String heading =preferences_from_main.getString("deptName" ,"Department Name")  +" : " + preferences_from_main.getString("className" , "Class Name") ;
+        clgname.setText(preferences_from_main.getString("clgName", "Institute Name"));
+        classname.setText( heading);
+        // Define timetable variables
+        int numSubjects = preferences_from_main2.getInt("s", 5);
+        int numWorkingDays = preferences_from_main2.getInt("wd", 5);
+        int numSlotsPerDay = preferences_from_main2.getInt("l", 5);
+
+        /*int[] NUMLECT ={5,5,5,5,5};
+        String[] SUBLIST = {"Network and information security.  ","Wireless mobile application. ", "Management ", "Emerging dreams. " ," Mobile application developer. "};
+*/
+
+        int[] NUMLECT = intent.getIntArrayExtra("lectnum_array");
+        String[] SUBLIST = intent.getStringArrayExtra("subname_array");
+        String[] day_arr = new String[]{"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+
+        for (int i = 0; i < SUBLIST.length; i++) {
+            Log.d("mayank", "onCreate: " + SUBLIST[i]);
+        }
+        for (int i = 0; i < NUMLECT.length; i++) {
+            Log.d("mayank", "onCreate: " + NUMLECT[i]);
+        }
+
+        // Create blank timetable matrix
+        String[][] timetable = new String[numWorkingDays][numSlotsPerDay];
+        for (int i = 0; i < numWorkingDays; i++) {
+            Arrays.fill(timetable[i], "");
+        }
+
+// Assign slots for each subject
+
+
+        Random random = new Random();
+        for (int i = 0; i < numSubjects; i++) {
+            String sub = SUBLIST[i];
+            int numSlots = NUMLECT[i];
+            for (int j = 0; j < numSlots; j++) {
+                int day = random.nextInt(numWorkingDays);
+                int slot = random.nextInt(numSlotsPerDay);
+                while (!timetable[day][slot].equals("")) {
+                    day = random.nextInt(numWorkingDays);
+                    slot = random.nextInt(numSlotsPerDay);
+                }
+                timetable[day][slot] = sub;
+            }
+        }
+
+        String prevVal = SUBLIST[0]; // keep track of previously assigned value
+        for (int i = 0; i < timetable.length; i++) {
+            for (int j = 0; j < timetable[i].length; j++) {
+                // shuffle array until current value is not the same as previous one
+                do {
+                    // use Fisher-Yates shuffle to shuffle array
+                    int row = random.nextInt(timetable.length);
+                    int col = random.nextInt(timetable[row].length);
+                    String temp = timetable[i][j];
+                    timetable[i][j] = timetable[row][col];
+                    timetable[row][col] = temp;
+                } while (timetable[i][j].equals(prevVal));
+                prevVal = timetable[i][j]; // update previously assigned value
+            }
+        }
+        TableLayout timetableTable = findViewById(R.id.timetable_table);
+        for (int i = 0; i < numWorkingDays; i++) {
+            TableRow row = new TableRow(this);
+            row.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT));
+
+            TextView dayView = new TextView(this);
+
+
+            dayView.setText(day_arr[i]);
+            dayView.setAllCaps(false);
+            dayView.setTextSize(15);
+            dayView.setTextColor(Color.BLACK);
+            dayView.setGravity(Gravity.CENTER_HORIZONTAL);
+            dayView.setTextAlignment(View.TEXT_ALIGNMENT_TEXT_START);
+            dayView.setTextColor(getResources().getColor(R.color.green));
+            row.addView(dayView);
+            for (int j = 0; j < numSlotsPerDay; j++) {
+                TextView subjectView = new TextView(this);
+                subjectView.setText(timetable[i][j]);
+                subjectView.setTextColor(getResources().getColor(R.color.green));
+                subjectView.setGravity(Gravity.CENTER_HORIZONTAL);
+                subjectView.setPadding(5, 10, 5, 10);
+                subjectView.setTextSize(16);
+                subjectView.setAllCaps(true);
+                row.addView(subjectView);
+            }
+
+            timetableTable.addView(row);
+        }
 
 
 
