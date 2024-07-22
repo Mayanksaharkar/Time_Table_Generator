@@ -9,30 +9,48 @@ TimeTable Generator is an Android application designed to assist organizational 
 
 ## Screenshots
 <div>
-<div id="container">
-<img src="./readmeAsset//Picture1.png">
-<img src="./readmeAsset//Picture2.png">
-<img src="./readmeAsset//Picture3.png">
-<img src="./readmeAsset//Picture4.png">
-<img src="./readmeAsset//Picture5.png">
-<img src="./readmeAsset//Picture6.png">
-<img src="./readmeAsset//Picture7.png">
-<img src="./readmeAsset//Picture8.png">
-</div>
-
-<style>
-
-    img{
-        width:30%;
+<div id="container" style=" width  : 100%;
+        height  : 100%;
+        background-color : rgb(0,0,0,0);
+    ">
+<img src="./readmeAsset//Picture1.png" style="       width:30%;
         margin : 10px;
         mix-blend-mode: multiply;
         background-color: rgb(0,0,0,0);
-        
-    }
-    .container{
-        width  : 100%;
-        height  : 100%;
-        background-color : rgb(0,0,0,0);
-    }
-</style>
+ ">
+<img src="./readmeAsset//Picture2.png" style="       width:30%;
+        margin : 10px;
+        mix-blend-mode: multiply;
+        background-color: rgb(0,0,0,0);
+ ">
+<img src="./readmeAsset//Picture3.png" style="       width:30%;
+        margin : 10px;
+        mix-blend-mode: multiply;
+        background-color: rgb(0,0,0,0);
+ ">
+<img src="./readmeAsset//Picture4.png" style="       width:30%;
+        margin : 10px;
+        mix-blend-mode: multiply;
+        background-color: rgb(0,0,0,0);
+ ">
+<img src="./readmeAsset//Picture5.png" style="       width:30%;
+        margin : 10px;
+        mix-blend-mode: multiply;
+        background-color: rgb(0,0,0,0);
+ ">
+<img src="./readmeAsset//Picture6.png" style="       width:30%;
+        margin : 10px;
+        mix-blend-mode: multiply;
+        background-color: rgb(0,0,0,0);
+ ">
+<img src="./readmeAsset//Picture7.png" style="       width:30%;
+        margin : 10px;
+        mix-blend-mode: multiply;
+        background-color: rgb(0,0,0,0);
+ ">
+<img src="./readmeAsset//Picture8.png" style="       width:30%;
+        margin : 10px;
+        mix-blend-mode: multiply;
+        background-color: rgb(0,0,0,0);
+ ">
 </div>
