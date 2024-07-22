@@ -8,7 +8,7 @@ TimeTable Generator is an Android application designed to assist organizational 
 
 
 ## Screenshots
-
+<div>
 <div id="container">
 <img src="./readmeAsset//Picture1.png">
 <img src="./readmeAsset//Picture2.png">
@@ -35,3 +35,4 @@ TimeTable Generator is an Android application designed to assist organizational 
         background-color : rgb(0,0,0,0);
     }
 </style>
+</div>
