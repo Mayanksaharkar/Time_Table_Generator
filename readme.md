@@ -23,16 +23,15 @@ TimeTable Generator is an Android application designed to assist organizational 
 <style>
 
     img{
-        width:250px;
-        height : 500px;
+        width:30%;
         margin : 10px;
         mix-blend-mode: multiply;
-        background-color: transparent;
+        background-color: rgb(0,0,0,0);
         
     }
     .container{
         width  : 100%;
         height  : 100%;
-        background-color : transparent;
+        background-color : rgb(0,0,0,0);
     }
 </style>
